@@ -2,19 +2,21 @@
   "name": "sticky_note",
   "version": "1.0.0",
   "description": "## Description Take notes in a rich text editor, [website](https://www.stickynote.app).",
-  "main": "index.js",
+  "main": "server/src/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "cd client && npm run build",
     "install-client": "cd client && npm install",
     "heroku-postbuild": "npm run install-client && npm run build",
-    "start": "cd server && npm install && node src/app.js"
+    "start": "npm run install-client && npm run build && cd server && npm install && node src/app.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/pontussandberg/sticky_note.git"
   },
-  "keywords": [],
+  "keywords": [
+    "heroku"
+  ],
   "author": "",
   "license": "ISC",
   "bugs": {

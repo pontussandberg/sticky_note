@@ -2,7 +2,6 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const cookieSession = require('cookie-session');
-const path = require('path');
 const { notes, auth } = require('./routes');
 require('./lib/passport');
 require('dotenv').config();
@@ -20,7 +19,7 @@ app.use(cookieSession({
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(express.static(path.resolve('../client/build')));
+app.use(express.static('../client/build'));
 
 app.use('/api/notes', notes);
 app.use('/auth', auth);
