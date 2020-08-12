@@ -1,0 +1,42 @@
+.google-btn {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: rgb(66, 133, 244);
+    width: 250px;
+    box-sizing: content-box;
+    cursor: pointer;
+    /* padding: 0px 2px 0px 0px; */
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(66, 133, 244);
+    border-image: initial;
+    border-radius: 2px;
+    text-decoration: none;
+    color: #fff;
+}
+
+.google-btn__logo {
+    display: flex;
+    align-items: center;
+}
+
+.google-btn__text {
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    -webkit-box-flex: 1;
+    flex-grow: 1;
+    height: 40px;
+}
+
+/* @media only screen and (max-width: 700px) {
+    .google-btn {
+        width: auto;
+    }
+    .google-btn__text {
+        display: none;
+    }
+} */

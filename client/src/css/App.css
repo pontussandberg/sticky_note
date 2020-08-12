@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border-collapse: collapse;
+}
+
+body{
+    font-family: 'Poppins', sans-serif;
+}
+
+button {
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+
+button:focus {
+    box-shadow: none;
+    border: none;
+    outline: none;
+}
+
+.mobile-fixed-header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    z-index: 2000;
+    height: 30px !important;
+}
+
+.filler-div{
+    width: 100%;
+    height: 44px;
+    background: transparent;
+}
+
+.fullscreen-prompt{
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(17, 17, 17, 0.65);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000000;
+}
+
+.fullscreen-prompt h1 {
+    text-align: center;
+}
+
+.stickie-app{
+    height: 100vh;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto 1fr;
+    background: var(--primary);
+    padding: 0 25px 25px 25px;
+    overflow: hidden;
+}
+
+
+.hidden{
+    display: none !important;
+}
+
+
+.no-padding {
+    padding: 0 !important;
+}
+
+@media only screen and (max-width: 1200px) {
+    .stickie-app{
+        padding: 0 5px 5px 5px;
+    } 
+}

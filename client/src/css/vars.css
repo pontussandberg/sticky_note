@@ -1,0 +1,19 @@
+
+
+:root {
+    --primary: rgb(249, 249, 249);
+    --primary-indent: rgb(221, 221, 221);
+    --blue-indent: rgb(93, 174, 255);
+    --blue: #7191d1;
+    --select: #253ea1;
+    --editor-bg: #ffffff;
+    --toolbar-bg: #ffffff;
+    --shadow: rgba(37, 37, 37, 0.8);
+    --editor-text: #111;
+    --editor-icon: #111;
+    --cta: #06c;
+    --grey-indent: rgb(231, 231, 231);
+    --green: #00ba63;
+    --google: #4285F4;
+    --mobile-size: 1200px;
+  }
