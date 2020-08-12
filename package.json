@@ -1,0 +1,24 @@
+{
+  "name": "sticky_note",
+  "version": "1.0.0",
+  "description": "## Description Take notes in a rich text editor, [website](https://www.stickynote.app).",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "cd client && npm run build",
+    "install-client": "cd client && npm install",
+    "heroku-postbuild": "npm run install-client && npm run build",
+    "start": "node server/src/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pontussandberg/sticky_note.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pontussandberg/sticky_note/issues"
+  },
+  "homepage": "https://github.com/pontussandberg/sticky_note#readme"
+}
