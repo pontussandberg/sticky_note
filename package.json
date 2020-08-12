@@ -1,7 +1,7 @@
 {
   "name": "sticky_note",
   "version": "1.0.0",
-  "description": "## Description Take notes in a rich text editor, [website](https://www.stickynote.app).",
+  "description": "Take notes in a rich text editor, [website](https://www.stickynote.app).",
   "main": "server/src/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
