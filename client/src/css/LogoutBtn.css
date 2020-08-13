@@ -34,5 +34,13 @@
     text-decoration: none;
     -webkit-box-flex: 1;
     flex-grow: 1;
-    height: 40px;
+    font-size: 16px;
+    padding: 8px 0;
+}
+
+@media only screen and (max-width: 1200px) {
+    .logout-btn__text {
+        padding: 4px 0;
+        font-size: 14px;
+    }
 }

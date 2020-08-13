@@ -31,12 +31,3 @@
     flex-grow: 1;
     height: 40px;
 }
-
-/* @media only screen and (max-width: 700px) {
-    .google-btn {
-        width: auto;
-    }
-    .google-btn__text {
-        display: none;
-    }
-} */

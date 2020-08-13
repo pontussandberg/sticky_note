@@ -45,4 +45,7 @@
     .header__hamburger {
         margin-left: 6px;
     }
+    .header{
+        height: 35px;
+    } 
 }

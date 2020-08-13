@@ -81,6 +81,6 @@ button:focus {
 
 @media only screen and (max-width: 1200px) {
     .stickie-app{
-        padding: 0 5px 5px 5px;
+        padding: 0 10px 10px 5px;
     } 
 }
