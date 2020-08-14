@@ -46,7 +46,7 @@ const SideBar = ({
             : "sidebar sidebar--closed"
 
     const getHamburgerClasses = () => !isSidebarOpen && isMobile
-        ? 'hamburger'
+        ? ''
         : 'hidden'
 
     return (
