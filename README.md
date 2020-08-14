@@ -1,7 +1,7 @@
 # Sticky Notes
 
 ## Description
-Take notes in a rich text editor, [website](https://www.stickynote.app).
+Take notes in a rich text editor, [https://www.stickynote.app](https://www.stickynote.app).
 
 ## Download and develop
 * The app is using Google oAuth which need credentials. You can create them from [Google Credentials](https://console.developers.google.com/apis/credentials).
