@@ -7,8 +7,10 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "cd client && npm run build",
     "install-client": "cd client && npm install",
+    "install-all": "cd client && npm install && cd ../server && npm install",
     "heroku-postbuild": "npm run install-client && npm run build",
-    "start": "cd server && npm install && node src/app.js"
+    "start": "cd server && npm install && node src/app.js",
+    "start-local": "npm run install-all && cd client && npm run build && cd ../server && npm run watch"
   },
   "repository": {
     "type": "git",
