@@ -70,7 +70,6 @@ const App = () => {
     // LS will be cleared and merged with DB.
     useEffect(() => {
         const savedStickies = JSON.parse(localStorage.getItem('stickies'));
-        console.log(savedStickies)
 
         authorized
             ? initStickiesDB(savedStickies)
@@ -198,6 +197,10 @@ const App = () => {
     }
 
 
+    const getAppClasses = () => !isSidebarOpen && isMobile
+        ? 'app app--header-hidden'
+        : 'app'
+
 
     return (
         <Switch>
@@ -205,7 +208,7 @@ const App = () => {
                 <Login />
             </Route>
             <Route path='/'>
-                <div className="stickie-app">
+                <div className={getAppClasses()}>
                     <Header
                         isSidebarOpen={isSidebarOpen}
                         onSidebarToggle={handleSidebarToggle}

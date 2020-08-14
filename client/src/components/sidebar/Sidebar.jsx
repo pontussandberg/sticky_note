@@ -2,6 +2,7 @@ import React from 'react';
 import AddBtn from './AddBtn';
 import ListStickie from './ListStickie';
 import Spinner from '../Spinner';
+import Hamburger from '../Hamburger';
 
 
 const deleteMsg = ({ noteHeader }) => `
@@ -44,9 +45,14 @@ const SideBar = ({
             ? "sidebar"
             : "sidebar sidebar--closed"
 
+    const getHamburgerClasses = () => !isSidebarOpen && isMobile
+        ? 'hamburger'
+        : 'hidden'
+
     return (
         <>
             <div className={getSidebarClasses()}>
+                <Hamburger onClick={onSidebarToggle} classes={getHamburgerClasses()} />
                 <AddBtn onAdd={onAdd} isSidebarOpen={isSidebarOpen} isMobile={isMobile} />
                 <div className="sidebar__list-container">
                     <ul>
