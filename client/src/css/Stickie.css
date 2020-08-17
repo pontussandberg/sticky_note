@@ -1,9 +1,7 @@
 .stickie{
     flex-grow: 1;
-    position: relative;
     background: var(--editor-bg);
     color: var(--editor-text);
-    z-index: 100;
     display: flex;
     flex-direction: column;
 }
@@ -23,6 +21,10 @@
     border-top: 1px solid black;
 }
 
+.ql-editor > * {
+    word-break: break-all !important;
+}
+
 
 .ql-toolbar{
     background: var(--toolbar-bg);
@@ -37,7 +39,6 @@
 
 /* ROWS */
 .toolbar > span{
-    /* border-right: 1px solid var(--primary); */
     padding: 10px 25px;
 }
 .toolbar span:hover{

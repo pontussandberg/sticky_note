@@ -30,4 +30,7 @@
     .hamburger {
         margin-left: 0px;
     }
+    .hamburger-container {
+        width: 25px;
+    }
 }

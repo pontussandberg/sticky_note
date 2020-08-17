@@ -10,7 +10,7 @@ const getListClasses = (stickie, isSidebarOpen) => {
 
     return isSidebarOpen
         ? classes
-        : classes + ' no-padding';
+        : classes + ' no-padding list-stickie--closed';
 };
 
 const getArrowClasses = (stickie, stickies, isSidebarOpen) =>

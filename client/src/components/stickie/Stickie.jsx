@@ -48,7 +48,7 @@ function Stickie(props) {
     return (
         <div className="stickie" ref={stickieRef}>
             <StickieToolbar id={props.stickie.toolbarID} />
-            <div id="editor-container"></div>
+            {/* <div id="editor-container"></div> */}
             <div className="textarea" id={props.stickie.quillID}></div>
         </div>
     );
