@@ -24,8 +24,5 @@ GOOGLE_CALLBACK_URL=http://localhost:8080/auth/google/callback
 MONGO_URI=mongodb://localhost:27017
 ```
 * Run `docker-compose up` in the project root to start the MongoDB in a docker container.
-* Start the app by running this inside the project root:
-```bash
-npm run start-local
-```
-* The app can now be visited on localhost:8080
+* Start the app by running `npm run start-local` inside the project root.
+* The app can now be visited on `localhost:8080`
