@@ -26,15 +26,6 @@ button:focus {
     outline: none;
 }
 
-.mobile-fixed-header{
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100% !important;
-    z-index: 2000;
-    height: 30px !important;
-}
-
 .filler-div{
     width: 100%;
     height: 44px;
