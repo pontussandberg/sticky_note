@@ -1,3 +1,3 @@
 {
-    "guideStr": "<p><u>Quick start guide</u></p><p>Add new sticky notes by pressing the \"+\" sign in the menu.</p><p></p><p>Your sticky notes will be <u>automatically saved</u> in the browser you are using, </p><p> you can close the browser window at any time and your notes will be <strong>safe!</strong></p><p><br></p><p>Use the menu to navigate between different stickies</p>"
+    "guideStr": "<p><strong class=\"ql-size-large\">Help</strong></p><p><br></p><p><strong><u>Not logged in</u></strong></p><p>If you are not logged in. Your notes will be automatically saved in your browser on the unit that you are using.</p><p><br></p><p><strong><u>Logged in</u></strong></p><p>If you log in with your google credentials. Your notes will be saved in cloud and you share the same notes with all logged in units.</p>"
 }
