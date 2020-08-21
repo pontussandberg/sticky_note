@@ -35,10 +35,6 @@ const App = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
 
-    useEffect(() => {
-        console.log(stickies);
-    })
-
     const initStickiesDB = savedStickies => {
         setIsLoading(true);
         if (savedStickies) {
