@@ -59,10 +59,13 @@ const App = () => {
     // ### EFFECTS ###
     useEffect(() => {
         authenticate()
-            .then(({ authentic }) => authentic
-                ? setAuthorized(true)
-                : setAuthorized(false)
-            );
+            .then((res) => {
+                if (res) {
+                    res.authentic
+                    ? setAuthorized(true)
+                    : setAuthorized(false)
+                }
+            });
     }, []);
 
     // Initializing state with saved stickies either in localstorage
