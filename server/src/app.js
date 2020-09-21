@@ -12,7 +12,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieSession({
-    maxAge: 24 * 60 * 60 * 1000,
+    maxAge: 9000 * 60 * 60 * 1000,
     name: 'stickie_note_session',
     keys: [process.env.COOKIE_ENCRYPT_KEY],
 }));
