@@ -4,10 +4,7 @@ const displayFirstSticke = list => list.map((x, i) => ({ ...x, isDisplayed: i ==
 
 const getNotes = () => fetch('/api/notes')
     .then(data => data.json())
-    .then(data => data
-        ? colToList(data.notes)
-        : []
-    )
+    .then(data => data.notes)
     .then(displayFirstSticke)
     .catch(console.error);
 
