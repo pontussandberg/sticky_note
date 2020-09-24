@@ -4,6 +4,7 @@ import shortid from 'shortid';
 import { guideStr } from './guide_string.json';
 import { getNotes, updateAllDB, authenticate } from './lib/db_connections';
 import { listToCol, colToList } from './lib/utils/modeling';
+import { displayFirstStickie } from './lib/utils/helpers';
 import updateLocalStorage from './lib/update_LS';
 import Board from './components/Board';
 import SideBar from './components/sidebar/Sidebar';
@@ -21,12 +22,6 @@ const initStickie = () => [{
     isDisplayed: true,
     contentHTML: ''
 }];
-
-const displayFirstStickie = list => list.map((x, i) => {
-    if (i === 0) x.isDisplayed = true;
-    else x.isDisplayed = false;
-    return x;
-})
 
 const App = () => {
     const [stickies, setStickies] = useState([]);
