@@ -48,7 +48,7 @@ const App = () => {
         }
         else {
             getNotes()
-                .then(notes => notes.length > 0
+                .then(notes => notes && notes.length > 0
                     ? setStickies(notes)
                     : updateStateDB(initStickie())
                 )

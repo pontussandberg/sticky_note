@@ -1,6 +1,8 @@
 import { colToList } from './utils/modeling';
 
-const displayFirstSticke = list => list.map((x, i) => ({ ...x, isDisplayed: i === 0 }));
+const displayFirstSticke = list => list && list.length > 0
+    ? list.map((x, i) => ({ ...x, isDisplayed: i === 0 }))
+    : [];
 
 const getNotes = () => fetch('/api/notes')
     .then(data => data.json())
