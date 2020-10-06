@@ -10,7 +10,6 @@ import Board from './components/Board';
 import SideBar from './components/sidebar/Sidebar';
 import Header from './components/Header';
 import Login from './components/Login';
-import xx from './x.json'
 
 let hotSaveTimeout;
 const mobileSize = 1200;
