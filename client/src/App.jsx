@@ -3,14 +3,14 @@ import { Route, Switch } from 'react-router-dom';
 import shortid from 'shortid';
 import { guideStr } from './guide_string.json';
 import { getNotes, updateAllDB, authenticate } from './lib/db_connections';
-import { listToCol, colToList } from './lib/utils/modeling';
+// import { listToCol, colToList } from './lib/utils/modeling';
 import { displayFirstStickie } from './lib/utils/helpers';
 import updateLocalStorage from './lib/update_LS';
 import Board from './components/Board';
 import SideBar from './components/sidebar/Sidebar';
 import Header from './components/Header';
 import Login from './components/Login';
-
+import xx from './x.json'
 
 let hotSaveTimeout;
 const mobileSize = 1200;
@@ -33,9 +33,8 @@ const App = () => {
     const initStickiesDB = savedStickies => {
         setIsLoading(true);
         if (savedStickies) {
-            const mappedList = colToList(savedStickies);
             getNotes()
-                .then(db => displayFirstStickie([...db, ...mappedList]))
+                .then(db => displayFirstStickie([...db, ...savedStickies]))
                 .then(merged => updateStateDB(merged))
                 .then(() => localStorage.clear())
                 .then(() => setIsLoading(false))
@@ -73,7 +72,7 @@ const App = () => {
             ? initStickiesDB(savedStickies)
             : savedStickies === null
                 ? setStickies([])
-                : setStickies(colToList(savedStickies))
+                : setStickies(savedStickies)
     }, [authorized]);
 
     useEffect(() => {
@@ -92,6 +91,11 @@ const App = () => {
             : setIsMobile(false);
     }, [])
 
+    useEffect(() => {
+        setTimeout(() => {
+            setStickies(xx.notes)
+        }, 4000)
+    })
 
     // ### HANDLERS ###
 
@@ -120,10 +124,9 @@ const App = () => {
 
 
     const updateStateDB = list => {
-        const col = listToCol(list);
         authorized
-            ? updateAllDB(col)
-            : updateLocalStorage(col);
+            ? updateAllDB(list)
+            : updateLocalStorage(list)
 
         setStickies(list);
     };
