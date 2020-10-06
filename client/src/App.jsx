@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import shortid from 'shortid';
 import { guideStr } from './guide_string.json';
 import { getNotes, updateAllDB, authenticate } from './lib/db_connections';
-// import { listToCol, colToList } from './lib/utils/modeling';
+// import { colToList } from './lib/utils/modeling';
 import { displayFirstStickie } from './lib/utils/helpers';
 import updateLocalStorage from './lib/update_LS';
 import Board from './components/Board';
@@ -90,12 +90,6 @@ const App = () => {
             ? setIsMobile(true)
             : setIsMobile(false);
     }, [])
-
-    useEffect(() => {
-        setTimeout(() => {
-            setStickies(xx.notes)
-        }, 4000)
-    })
 
     // ### HANDLERS ###
 
