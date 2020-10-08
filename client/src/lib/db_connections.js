@@ -3,7 +3,10 @@ import { displayFirstStickie } from './utils/helpers';
 
 const getNotes = () => fetch('/api/notes')
     .then(data => data.json())
-    .then(data => data.notes)
+    .then(data => data && data.notes
+        ? data.notes
+        : []
+    )
     .then(displayFirstStickie)
     .catch(console.error);
 

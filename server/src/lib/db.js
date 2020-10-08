@@ -13,7 +13,7 @@ const connect = (client, collection) => client.connect()
 const initNotes = userID => {
     const client = new MongoClient(mongoUri, mongoOpts);
     return connect(client, 'notes')
-        .then(col => col.insertOne({ userID }))
+        .then(col => col.insertOne({ userID, notes: [] }))
         .finally(() => client.close());
 }
 
