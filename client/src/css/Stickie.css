@@ -32,7 +32,28 @@
     border: none !important;
 }
 
+.toolbar-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.saved-indicator--green {
+    width: 8px;
+    height: 8px;
+    margin-right: 15px;
+    border-radius: 50%;
+    background-color: #2ea745;
+}
+.saved-indicator--red {
+    width: 8px;
+    height: 8px;
+    margin-right: 15px;
+    border-radius: 50%;
+    background-color: crimson;
+}
+
 .toolbar{
+    flex-grow: 1;
     display: flex;
     align-items: center;
 }
@@ -66,6 +87,9 @@ pre.ql-syntax{
 }
 
 @media only screen and (max-width: 1000px) {
+    .saved-indicator--green, .saved-indicator--red{
+        margin: 0 20px;
+    }
     .toolbar{
         flex-direction: column;
     }

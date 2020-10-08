@@ -1,7 +1,7 @@
 import React from 'react';
 import Stickie from './stickie/Stickie';
 
-const Board = ({ stickies, isSidebarOpen, changeHeading, onStickiesUpdate, isMobile }) => {
+const Board = ({ stickies, isSidebarOpen, changeHeading, onStickiesUpdate, isMobile, isSaving }) => {
     const renderStickie = () => {
         const x = stickies.find(x => x.isDisplayed);
         return x
@@ -11,6 +11,7 @@ const Board = ({ stickies, isSidebarOpen, changeHeading, onStickiesUpdate, isMob
                 stickie={x}
                 changeHeading={changeHeading}
                 onStickiesUpdate={onStickiesUpdate}
+                isSaving={isSaving}
             />)
             : null;
     };

@@ -47,7 +47,7 @@ function Stickie(props) {
 
     return (
         <div className="stickie" ref={stickieRef}>
-            <StickieToolbar id={props.stickie.toolbarID} />
+            <StickieToolbar id={props.stickie.toolbarID} isSaving={props.isSaving} />
             {/* <div id="editor-container"></div> */}
             <div className="textarea" id={props.stickie.quillID}></div>
         </div>

@@ -28,6 +28,7 @@ const App = () => {
     const [authorized, setAuthorized] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
+    const [isSaving, setIsSaving] = useState(false);
 
     const initStickiesDB = savedStickies => {
         setIsLoading(true);
@@ -110,8 +111,10 @@ const App = () => {
 
 
         if (authorized) {
+            setIsSaving(true)
             hotSaveTimeout = setTimeout(() => {
                 updateAllDB(result);
+                setIsSaving(false)
             }, 1500)
         } else {
             updateLocalStorage(result);
@@ -229,6 +232,7 @@ const App = () => {
                         onLogout={() => setAuthorized(false)}
                     />
                     <Board
+                        isSaving={isSaving}
                         isLoading={isLoading}
                         onStickiesUpdate={handleStickiesUpdate}
                         isSidebarOpen={isSidebarOpen}
