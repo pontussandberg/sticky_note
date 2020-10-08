@@ -79,6 +79,14 @@ const App = () => {
     const [isLightMode, setIsLightMode] = useState(getSavedTheme());
     const [canSwitchMode, setCanSwitchMode] = useState(true)
 
+    // If OS has dark mode and current stick_note mode is light, 
+    // setting sticky_note mode to dark and setting this state to Local Storage.
+    useEffect(() => {
+        if(window.matchMedia('(prefers-color-scheme: dark)').matches && isLightMode) {
+            handleLightModeToggle()
+        }
+    }, [])
+
     useEffect(() => {
         const colors = isLightMode 
             ? cssVars.light
