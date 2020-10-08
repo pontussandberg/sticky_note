@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import shortid from 'shortid';
 import { guideStr } from './guide_string.json';
 import { getNotes, updateAllDB, authenticate } from './lib/db_connections';
-// import { colToList } from './lib/utils/modeling';
+import { colToList } from './lib/utils/modeling';
 import { displayFirstStickie } from './lib/utils/helpers';
 import updateLocalStorage from './lib/update_LS';
 import Board from './components/Board';
@@ -66,12 +66,15 @@ const App = () => {
     // LS will be cleared and merged with DB.
     useEffect(() => {
         const savedStickies = JSON.parse(localStorage.getItem('stickies'));
+        const savedStickiesList = Array.isArray(savedStickies) || savedStickies === null
+            ? savedStickies
+            : colToList(savedStickies)
 
         authorized
-            ? initStickiesDB(savedStickies)
-            : savedStickies === null
+            ? initStickiesDB(savedStickiesList)
+            : savedStickiesList === null
                 ? setStickies([])
-                : setStickies(savedStickies)
+                : setStickies(savedStickiesList)
     }, [authorized]);
 
     useEffect(() => {
