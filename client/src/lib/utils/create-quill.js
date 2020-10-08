@@ -6,7 +6,7 @@ const createQuill = stickie => new Quill('#' + stickie.quillID, {
         toolbar: '#' + stickie.toolbarID
     },
     theme: 'snow',
-    placeholder: 'Compose...',
+    placeholder: '',
 });
 
 export default createQuill;

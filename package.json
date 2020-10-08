@@ -24,5 +24,8 @@
   "bugs": {
     "url": "https://github.com/pontussandberg/sticky_note/issues"
   },
-  "homepage": "https://github.com/pontussandberg/sticky_note#readme"
+  "homepage": "https://github.com/pontussandberg/sticky_note#readme",
+  "dependencies": {
+    "react-dark-mode-toggle": "0.0.10"
+  }
 }

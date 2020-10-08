@@ -14,6 +14,46 @@ import Login from './components/Login';
 let hotSaveTimeout;
 const mobileSize = 1200;
 
+const cssVars = {
+    light: [
+        {varName: '--primary', value: '#f9f9f9'},
+        {varName: '--primary-indent', value: '#dddddd'},
+        {varName: '--blue', value: '#7191d1'},
+        {varName: '--select', value: '#253ea1'},
+        {varName: '--editor-bg', value: '#FFF'},
+        {varName: '--toolbar-bg', value: '#FFF'},
+        {varName: '--editor-text', value: '#111'},
+        {varName: '--text', value: '#111'},
+        {varName: '--editor-icon', value: '#111'},
+        {varName: '--cta', value: '#06c'},
+        {varName: '--code-block', value: '#292C3E'},
+        {varName: '--logout-btn-color', value: '#dd2b3d'},
+        {varName: '--border', value: '#ccc'},
+    ],
+    dark: [
+        {varName: '--primary', value: '#27252e'},
+        {varName: '--primary-indent', value: '#41434d'},
+        {varName: '--blue', value: '#34353d'},
+        {varName: '--select', value: '#464953'},
+        {varName: '--editor-bg', value: '#36393f'},
+        {varName: '--toolbar-bg', value: '#36393f'},
+        {varName: '--editor-text', value: '#FFF'},
+        {varName: '--text', value: '#FFF'},
+        {varName: '--editor-icon', value: '#FFF'},
+        {varName: '--cta', value: '#3e445f'},
+        {varName: '--code-block', value: '#41434d'},
+        {varName: '--logout-btn-color', value: '#FFF'},
+        {varName: '--border', value: '#27252e'},
+    ]
+}
+
+const setCssVar = (varName, value) => {
+    document
+        .documentElement
+        .style
+        .setProperty(varName, value)
+}
+
 const initStickie = () => [{
     quillID: 'q' + shortid.generate(),
     toolbarID: 't' + shortid.generate(),
@@ -22,6 +62,13 @@ const initStickie = () => [{
     contentHTML: ''
 }];
 
+const getSavedTheme = () => {
+    const savedTheme = JSON.parse(localStorage.getItem('isLightMode'))
+    return savedTheme !== null
+        ? savedTheme
+        : true
+}
+
 const App = () => {
     const [stickies, setStickies] = useState([]);
     const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -29,6 +76,15 @@ const App = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
     const [isSaving, setIsSaving] = useState(false);
+    const [isLightMode, setIsLightMode] = useState(getSavedTheme());
+
+    useEffect(() => {
+        const colors = isLightMode 
+            ? cssVars.light
+            : cssVars.dark
+
+        colors.forEach(x => setCssVar(x.varName, x.value))
+    }, [isLightMode])
 
     const initStickiesDB = savedStickies => {
         setIsLoading(true);
@@ -56,8 +112,8 @@ const App = () => {
             .then((res) => {
                 if (res) {
                     res.authentic
-                    ? setAuthorized(true)
-                    : setAuthorized(false)
+                        ? setAuthorized(true)
+                        : setAuthorized(false)
                 }
             });
     }, []);
@@ -201,6 +257,10 @@ const App = () => {
         ? 'app app--header-hidden'
         : 'app'
 
+    const handleLightModeToggle = () => {
+        setIsLightMode(!isLightMode)
+        localStorage.setItem('isLightMode', JSON.stringify(!isLightMode))
+    }
 
     return (
         <Switch>
@@ -210,6 +270,8 @@ const App = () => {
             <Route path='/'>
                 <div className={getAppClasses()}>
                     <Header
+                        isLightMode={isLightMode}
+                        onLightModeToggle={handleLightModeToggle}
                         isSidebarOpen={isSidebarOpen}
                         onSidebarToggle={handleSidebarToggle}
                         onAddGuide={handleAddGuide}

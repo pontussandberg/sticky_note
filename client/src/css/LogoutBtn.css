@@ -7,8 +7,8 @@
     padding: 0px 2px 0px 0px;
     border-radius: 7px;
     text-decoration: none;
-    color: #dd2b3d;
-    background-color: rgb(231, 231, 231);
+    color: var(--logout-btn-color);
+    background-color: var(--primary-indent);
 }
 
 .logout-btn:hover {
@@ -36,5 +36,8 @@
     .logout-btn__text {
         padding: 4px 0;
         font-size: 14px;
+    }
+    .logout-btn {
+        width: 70px;
     }
 }

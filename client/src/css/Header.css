@@ -4,14 +4,14 @@
     background: var(--primary);
     width: 100%;
     display: grid;
-    grid-template-columns: auto 1fr auto;
+    grid-template-columns: auto 1fr auto auto;
     align-items: center;
     justify-items: start;
     padding-right: 5px;
 }
 
 .header__heading{
-    color: #222;
+    color: var(--text);
     font-size: 24px;
     margin-left: 45px;
 }

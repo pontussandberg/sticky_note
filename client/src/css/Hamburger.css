@@ -18,8 +18,8 @@
 .hamburger svg{
     width: 25px;
     height: 25px;
-    stroke: #222;
-    fill: #222;
+    stroke: var(--text);
+    fill: var(--text);
 }
 .hamburger svg:hover{
     stroke: var(--cta);

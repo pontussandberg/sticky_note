@@ -8,6 +8,7 @@ const StickieToolbar = ({ id, isSaving }) => (
                     <select className="ql-font"></select>
                     <select className="ql-size"></select>
                 </span>
+                <span></span>
             </span>
 
             <span className="row2">
@@ -32,7 +33,9 @@ const StickieToolbar = ({ id, isSaving }) => (
                 </span>
             </span>
         </div>
-        <div class={isSaving ? 'saved-indicator--red' : 'saved-indicator--green'}><div></div><div></div></div>
+        <div className="saved-indicator-container">
+            <div className={isSaving ? 'saved-indicator--red' : 'saved-indicator--green'}><div></div><div></div></div>
+        </div>
     </div>
 );
 

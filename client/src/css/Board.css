@@ -1,5 +1,5 @@
 .board{
-    background: #ffffff;
+    background: var(--editor-bg);
     display: flex;
     -webkit-box-flex: 1;
     overflow: hidden;

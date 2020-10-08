@@ -1,17 +1,51 @@
 
 
 :root {
-    --primary: rgb(249, 249, 249);
-    --primary-indent: rgb(221, 221, 221);
+    --primary: #f9f9f9;
+    --primary: #27252e;
+
+    --primary-indent: #dddddd;
+    --primary-indent: #41434d;
+
     --blue-indent: rgb(93, 174, 255);
+
     --blue: #7191d1;
+    --blue: #34353d;
+    
     --select: #253ea1;
-    --editor-bg: #ffffff;
-    --toolbar-bg: #ffffff;
+    --select: #464953;
+
+    --editor-bg: #FFF;
+    --editor-bg: #36393f;
+
+    --toolbar-bg: #FFF;
+    --toolbar-bg: #2C2E34;
+
     --shadow: rgba(37, 37, 37, 0.8);
+
     --editor-text: #111;
+    --editor-text: #FFF;
+
+    --text: #111;
+    --text: #fff;
+
+    --text-darker: #ccc;
+
     --editor-icon: #111;
+    --editor-icon: #FFF;
+
     --cta: #06c;
+    --cta: #3e445f;
+
+    --code-block: #292C3E;
+    --code-block: #41434d;
+
+    --logout-btn-color: #dd2b3d;
+    --logout-btn-color: #fff;
+
+    --border: #ccc;
+    --border: #27252e;
+
     --grey-indent: rgb(231, 231, 231);
     --green: #00ba63;
     --google: #4285F4;

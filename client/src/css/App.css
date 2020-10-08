@@ -26,6 +26,10 @@ button:focus {
     outline: none;
 }
 
+.light-mode-toggle {
+    margin-right: 20px;
+}
+
 .filler-div{
     width: 100%;
     height: 44px;
@@ -78,5 +82,8 @@ button:focus {
     .app{
         padding: 0;
         padding-left: 5px;  
-    } 
+    }
+    .light-mode-toggle {
+        margin-right: 5px;
+    }
 }
