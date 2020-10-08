@@ -10,6 +10,14 @@
     padding-right: 5px;
 }
 
+.toggle-button {
+    background-color: none;
+    background: none;
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+
 .header__heading{
     color: var(--text);
     font-size: 24px;
@@ -25,5 +33,8 @@
     }
     .header{
         height: 35px;
-    } 
+    }
+    .toggle-button {
+        margin-right: 5px;
+    }
 }

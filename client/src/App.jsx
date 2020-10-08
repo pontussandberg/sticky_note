@@ -77,6 +77,7 @@ const App = () => {
     const [isMobile, setIsMobile] = useState(false);
     const [isSaving, setIsSaving] = useState(false);
     const [isLightMode, setIsLightMode] = useState(getSavedTheme());
+    const [canSwitchMode, setCanSwitchMode] = useState(true)
 
     useEffect(() => {
         const colors = isLightMode 
@@ -258,8 +259,15 @@ const App = () => {
         : 'app'
 
     const handleLightModeToggle = () => {
-        setIsLightMode(!isLightMode)
-        localStorage.setItem('isLightMode', JSON.stringify(!isLightMode))
+        if(canSwitchMode) {
+            setCanSwitchMode(false)
+            setTimeout(() => {
+                setCanSwitchMode(true)
+            }, 1600)
+
+            setIsLightMode(!isLightMode)
+            localStorage.setItem('isLightMode', JSON.stringify(!isLightMode))
+        }
     }
 
     return (

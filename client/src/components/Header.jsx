@@ -21,12 +21,13 @@ const Header = ({ onSidebarToggle, isSidebarOpen, authorized, onLogout, isMobile
         <Hamburger onClick={onSidebarToggle} />
 
         <h1 className="header__heading">STICKY NOTE</h1>
-        <DarkModeToggle 
-            checked={!isLightMode}
-            onChange={onLightModeToggle}
-            size={isMobile ? 50 : 60}
-            className={'light-mode-toggle'}
-        />
+
+        <button className='toggle-button' onClick={onLightModeToggle}>
+            <DarkModeToggle 
+                checked={!isLightMode}
+                size={isMobile ? 50 : 60}
+            />
+        </button>
         {getAuthButtons(authorized, isSidebarOpen, onLogout, isMobile)}
     </header>
 );
