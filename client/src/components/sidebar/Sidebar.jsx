@@ -23,7 +23,6 @@ const SideBar = ({
     onMoveUp,
     isLoading,
     isMobile,
-    authorized,
 }) => {
     const handleListClick = (quillID) => {
         displayStickie(quillID);

@@ -10,7 +10,6 @@ import Board from './components/Board';
 import SideBar from './components/sidebar/Sidebar';
 import Header from './components/Header';
 import Login from './components/Login';
-import { notes as notesx } from './x.json';
 
 let hotSaveTimeout;
 const mobileSize = 1200;
@@ -30,6 +29,7 @@ const cssVars = {
         {varName: '--code-block', value: '#292C3E'},
         {varName: '--logout-btn-color', value: '#dd2b3d'},
         {varName: '--border', value: '#ccc'},
+        {varName: '--text-secondary', value: '#474747'}
     ],
     dark: [
         {varName: '--primary', value: '#27252e'},
@@ -45,6 +45,7 @@ const cssVars = {
         {varName: '--code-block', value: '#41434d'},
         {varName: '--logout-btn-color', value: '#FFF'},
         {varName: '--border', value: '#27252e'},
+        {varName: '--text-secondary', value: '#a5a5a5'},
     ]
 }
 
@@ -79,12 +80,8 @@ const App = () => {
     const [isSaving, setIsSaving] = useState(false);
     const [isLightMode, setIsLightMode] = useState(getSavedTheme());
     const [canSwitchMode, setCanSwitchMode] = useState(true)
+    const [isLoginShown, setIsLoginShown] = useState(false)
 
-    useEffect(() => {
-        setTimeout(() => {
-            setStickies(notesx)
-        },4000)
-    }, [])
     // If OS has dark mode and current stick_note mode is light, 
     // setting sticky_note mode to dark and setting this state to Local Storage.
     useEffect(() => {
@@ -289,49 +286,47 @@ const App = () => {
         }
     }
 
+    const onToggleLogin = () => {
+        setIsLoginShown(!isLoginShown)
+    }
+
     return (
-        <Switch>
-            <Route path='/login'>
-                <Login />
-            </Route>
-            <Route path='/'>
-                <div className={getAppClasses()}>
-                    <Header
-                        isLightMode={isLightMode}
-                        onLightModeToggle={handleLightModeToggle}
-                        isSidebarOpen={isSidebarOpen}
-                        onSidebarToggle={handleSidebarToggle}
-                        onAddGuide={handleAddGuide}
-                        authorized={authorized}
-                        isMobile={isMobile}
-                        onLogout={() => setAuthorized(false)}
-                    />
-                    <SideBar
-                        authorized={authorized}
-                        isLoading={isLoading}
-                        onMoveUp={handleMoveUp}
-                        onAddGuide={handleAddGuide}
-                        isSidebarOpen={isSidebarOpen}
-                        onSidebarToggle={handleSidebarToggle}
-                        displayStickie={handleDisplaySticke}
-                        isMobile={isMobile}
-                        onRemove={handleRemove}
-                        onAdd={handleAdd}
-                        stickies={stickies}
-                        onLogout={() => setAuthorized(false)}
-                    />
-                    <Board
-                        isSaving={isSaving}
-                        isLoading={isLoading}
-                        onStickiesUpdate={handleStickiesUpdate}
-                        isSidebarOpen={isSidebarOpen}
-                        isMobile={isMobile}
-                        onRemove={handleRemove}
-                        stickies={stickies}
-                    />
-                </div>
-            </Route>
-        </Switch>
+        <div className={getAppClasses()}>
+            { isLoginShown ? <Login onToggleLogin={onToggleLogin} /> : null }
+            <Header
+                isLightMode={isLightMode}
+                onLightModeToggle={handleLightModeToggle}
+                isSidebarOpen={isSidebarOpen}
+                onSidebarToggle={handleSidebarToggle}
+                onAddGuide={handleAddGuide}
+                authorized={authorized}
+                isMobile={isMobile}
+                onLogout={() => setAuthorized(false)}
+                onToggleLogin={onToggleLogin}
+            />
+            <SideBar
+                isLoading={isLoading}
+                onMoveUp={handleMoveUp}
+                onAddGuide={handleAddGuide}
+                isSidebarOpen={isSidebarOpen}
+                onSidebarToggle={handleSidebarToggle}
+                displayStickie={handleDisplaySticke}
+                isMobile={isMobile}
+                onRemove={handleRemove}
+                onAdd={handleAdd}
+                stickies={stickies}
+                onLogout={() => setAuthorized(false)}
+            />
+            <Board
+                isSaving={isSaving}
+                isLoading={isLoading}
+                onStickiesUpdate={handleStickiesUpdate}
+                isSidebarOpen={isSidebarOpen}
+                isMobile={isMobile}
+                onRemove={handleRemove}
+                stickies={stickies}
+            />
+        </div>
     );
 }
 

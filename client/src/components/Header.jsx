@@ -1,21 +1,22 @@
 import React from 'react';
-import GoogleLogin from './buttons/GoogleLogin';
 import LogoutBtn from './buttons/LogoutBtn';
-import SecondaryLink from './buttons/SecondaryLink';
+import SecondaryBtn from './buttons/SecondaryBtn';
 import Hamburger from './Hamburger';
 import DarkModeToggle from "react-dark-mode-toggle";
 
-const getAuthButtons = (authorized, isSidebarOpen, onLogout, isMobile) => authorized
+const getAuthButtons = (authorized, onLogout, onToggleLogin) => authorized
     ? <LogoutBtn onLogout={onLogout} />
-    : isMobile
-        ? <SecondaryLink text='Log in' path='/login' />
-        : <GoogleLogin isSidebarOpen={isSidebarOpen} />
+    : <SecondaryBtn text='Log in' onClick={onToggleLogin} />
+
 
 const getHeaderClasses = (isSidebarOpen, isMobile) => !isSidebarOpen && isMobile
     ? 'hidden'
     : 'header'
 
-const Header = ({ onSidebarToggle, isSidebarOpen, authorized, onLogout, isMobile, onLightModeToggle, isLightMode }) => (
+const Header = ({ onSidebarToggle, isSidebarOpen,
+                authorized, onLogout, isMobile,
+                onLightModeToggle, isLightMode, onToggleLogin }) => (
+
     <header className={getHeaderClasses(isSidebarOpen, isMobile)}>
 
         <Hamburger onClick={onSidebarToggle} />
@@ -28,7 +29,7 @@ const Header = ({ onSidebarToggle, isSidebarOpen, authorized, onLogout, isMobile
                 size={isMobile ? 50 : 60}
             />
         </button>
-        {getAuthButtons(authorized, isSidebarOpen, onLogout, isMobile)}
+        {getAuthButtons(authorized, isSidebarOpen, onToggleLogin)}
     </header>
 );
 

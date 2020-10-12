@@ -1,4 +1,4 @@
-.secondary-link {
+.secondary-btn {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -9,7 +9,7 @@
     border-radius: 7px;
     background-color: var(--cta);
 }
-.secondary-link__text {
+.secondary-btn__text {
     color: #fff;
     font-size: 14px;
 }

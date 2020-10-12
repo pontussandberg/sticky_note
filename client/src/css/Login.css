@@ -1,28 +1,68 @@
 .login-container {
-    background-color: var(--primary);
+    position: absolute;
+    z-index: 10000000000;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    width: 100vw;
+    background: transparent;
 }
-.login {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.login-container__login {
+    position: relative;
+    width: 500px;
     margin-bottom: 200px;
-    background-color: #fff;
-    padding: 80px 80px;
+    background-color: var(--primary);
     border-radius: 7px;
+    padding: 50px 80px 80px 80px;
     -webkit-box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
     -moz-box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
     -ms-box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
     -o-box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
     box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
 }
+.login__oauth {
+    display: flex;
+    justify-content: center;
+    margin-top: 70px;
+}
 
-@media only screen and (max-width: 400px) {
-    .login {
-        padding: 60px 0;
+.login__title {
+    color: var(--text);
+    font-size: 24px;
+}
+
+.login__description {
+    font-size: 13px;
+    color: var(--text-secondary);
+    font-weight: normal;
+}
+
+.login__cross-btn {
+    background: none;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+.login__cross-btn svg {
+    width: 18px;
+    height: 18px;
+}
+.login__cross-btn svg line {
+    stroke: var(--text);
+}
+
+
+@media only screen and (max-width: 500px) {
+    .login-container__login {
+        padding: 50px 30px 80px 30px;
         width: 100%;
+        margin-left: -5px;
+    }
+
+    .login-container {
+        display: block;
+        margin-top: 45px;
     }
 }
