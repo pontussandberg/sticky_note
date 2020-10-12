@@ -178,7 +178,7 @@ const App = () => {
         if (authorized) {
             setIsSaving(true)
             hotSaveTimeout = setTimeout(() => {
-                updateAllDB(result);
+                updateStateDB(result);
                 setIsSaving(false)
             }, 1500)
         } else {
@@ -188,11 +188,13 @@ const App = () => {
 
 
     const updateStateDB = list => {
-        authorized
-            ? updateAllDB(list)
-            : updateLocalStorage(list)
+        if(list && list.length > 0) {
+            authorized
+                ? updateAllDB(list)
+                : updateLocalStorage(list)
 
-        setStickies(list);
+            setStickies(list);
+        }
     };
 
 
