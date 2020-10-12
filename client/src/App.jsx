@@ -10,6 +10,7 @@ import Board from './components/Board';
 import SideBar from './components/sidebar/Sidebar';
 import Header from './components/Header';
 import Login from './components/Login';
+import { notes as notesx } from './x.json';
 
 let hotSaveTimeout;
 const mobileSize = 1200;
@@ -66,7 +67,7 @@ const getSavedTheme = () => {
     const savedTheme = JSON.parse(localStorage.getItem('isLightMode'))
     return savedTheme !== null
         ? savedTheme
-        : true
+        : false
 }
 
 const App = () => {
@@ -79,6 +80,11 @@ const App = () => {
     const [isLightMode, setIsLightMode] = useState(getSavedTheme());
     const [canSwitchMode, setCanSwitchMode] = useState(true)
 
+    useEffect(() => {
+        setTimeout(() => {
+            setStickies(notesx)
+        },4000)
+    }, [])
     // If OS has dark mode and current stick_note mode is light, 
     // setting sticky_note mode to dark and setting this state to Local Storage.
     useEffect(() => {
@@ -188,7 +194,10 @@ const App = () => {
 
 
     const updateStateDB = list => {
-        if(list && list.length > 0) {
+        if(!list) return
+
+        // Pretty hacky tbh
+        if(list.length > 0 || list.length === 0 && stickies.length === 1) {
             authorized
                 ? updateAllDB(list)
                 : updateLocalStorage(list)
