@@ -29,7 +29,7 @@ const Header = ({ onSidebarToggle, isSidebarOpen,
                 size={isMobile ? 50 : 60}
             />
         </button>
-        {getAuthButtons(authorized, isSidebarOpen, onToggleLogin)}
+        {getAuthButtons(authorized, onLogout, onToggleLogin)}
     </header>
 );
 
