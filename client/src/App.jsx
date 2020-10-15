@@ -56,6 +56,17 @@ const setCssVar = (varName, value) => {
         .setProperty(varName, value)
 }
 
+const filterDuplicates = (stickies) => {
+    const addedIds = []
+    return stickies.filter(stickie => {
+        if(addedIds.some(x => x === stickie.quillID)) {
+            return false
+        }
+        addedIds.push(stickie.quillID)
+        return true;
+    })
+}
+
 const initStickie = () => [{
     quillID: 'q' + shortid.generate(),
     toolbarID: 't' + shortid.generate(),
@@ -100,9 +111,10 @@ const App = () => {
 
     const initStickiesDB = savedStickies => {
         setIsLoading(true);
-        if (savedStickies) {
+        if (savedStickies && savedStickies.length > 0) {
             getNotes()
                 .then(db => displayFirstStickie([...db, ...savedStickies]))
+                .then(filterDuplicates)
                 .then(merged => updateStateDB(merged))
                 .then(() => localStorage.clear())
                 .then(() => setIsLoading(false))
@@ -194,7 +206,7 @@ const App = () => {
         if(!list) return
 
         // Pretty hacky tbh
-        if(list.length > 0 || list.length === 0 && stickies.length === 1) {
+        if(list.length > 0) {
             authorized
                 ? updateAllDB(list)
                 : updateLocalStorage(list)
@@ -236,9 +248,13 @@ const App = () => {
 
     const handleRemove = (quillID) => {
         const filtered = [...stickies].filter(x => x.quillID !== quillID);
+        
+        if(filtered.length === 0) {
+            filtered.push(initStickie())
+        }
+        
         const isOneDisplayed = filtered.some(x => x.isDisplayed);
-
-        if (!isOneDisplayed && filtered.length > 0) {
+        if (!isOneDisplayed) {
             filtered[0].isDisplayed = true;
         }
         updateStateDB(filtered);
