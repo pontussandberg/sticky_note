@@ -152,11 +152,16 @@ const App = () => {
     // or DB. If stickies are saved in LS and the user is authorized,
     // LS will be cleared and merged with DB.
     useEffect(() => {
-        const savedStickies = JSON.parse(localStorage.getItem('stickies'));
-        const savedStickiesList = Array.isArray(savedStickies) || savedStickies === null
+        let savedStickies = JSON.parse(localStorage.getItem('stickies'));
+        savedStickies = savedStickies === null
+            ? []
+            : savedStickies
+
+        const savedStickiesList = Array.isArray(savedStickies)
             ? savedStickies
             : colToList(savedStickies)
 
+        
         authorized
             ? initStickiesDB(savedStickiesList)
             : savedStickiesList === null
@@ -256,7 +261,7 @@ const App = () => {
         const filtered = [...stickies].filter(x => x.quillID !== quillID);
         
         if(filtered.length === 0) {
-            filtered.push(initStickie())
+            filtered.push(...initStickie())
         }
         
         const isOneDisplayed = filtered.some(x => x.isDisplayed);
