@@ -56,6 +56,10 @@ const setCssVar = (varName, value) => {
         .setProperty(varName, value)
 }
 
+const filterEmptyStickies = (stickies) => {
+    return stickies.filter(stickie => stickie.contentHTML.length > 0)
+}
+
 const filterDuplicates = (stickies) => {
     const addedIds = []
     return stickies.filter(stickie => {
@@ -111,7 +115,9 @@ const App = () => {
 
     const initStickiesDB = savedStickies => {
         setIsLoading(true);
+    
         if (savedStickies && savedStickies.length > 0) {
+            savedStickies = filterEmptyStickies(savedStickies)
             getNotes()
                 .then(db => displayFirstStickie([...db, ...savedStickies]))
                 .then(filterDuplicates)
@@ -122,8 +128,8 @@ const App = () => {
         }
         else {
             getNotes()
-                .then(notes => notes && notes.length > 0
-                    ? setStickies(notes)
+                .then(db => db && db.length > 0
+                    ? setStickies(db)
                     : updateStateDB(initStickie())
                 )
                 .then(() => setIsLoading(false))
@@ -154,7 +160,7 @@ const App = () => {
         authorized
             ? initStickiesDB(savedStickiesList)
             : savedStickiesList === null
-                ? setStickies([])
+                ? setStickies(initStickie())
                 : setStickies(savedStickiesList)
     }, [authorized]);
 
