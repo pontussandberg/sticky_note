@@ -1,11 +1,9 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-const passport = require('passport')
 const cookieSession = require('cookie-session')
+const passport = require('./lib/passport')
 const { notes, auth } = require('./routes')
-require('./lib/passport')
 
-const port = process.env.PORT || 8080
 const app = express()
 
 app.use(bodyParser.json())

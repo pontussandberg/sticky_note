@@ -1,10 +1,11 @@
 const http = require('http')
 const app = require('./app')
 const { disconnectDB, connectDB } = require('./lib/db')
+require('dotenv').config();
 
 const server = http.createServer(app)
 
-const port = process.env.PORT || 5000
+const port = process.env.PORT || 8080
 server.listen(port, () => console.log(`listening on port: ${port}`))
 
 connectDB()
