@@ -1,7 +1,8 @@
 const passport = require('passport');
 const { v4 } = require('uuid')
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
-const db = require('./db');
+const dbNotes = require('./db/db_notes');
+const dbUsers = require('./db/db_users');
 require('dotenv').config();
 
 const createUser = (profile, done) => {
@@ -11,7 +12,7 @@ const createUser = (profile, done) => {
         userID: v4(),
     };
 
-    Promise.all([db.initNotes(user.userID), db.insertUser(user)])
+    Promise.all([dbNotes.initNotes(user.userID), dbUsers.insertUser(user)])
         .then(() => done(null, user));
 };
 
@@ -29,7 +30,7 @@ passport.use(new GoogleStrategy({
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     callbackURL: process.env.GOOGLE_CALLBACK_URL,
 }, (accessToken, refreshToken, profile, done) => {
-    db.getUserByGoogleID(profile.id)
+    dbUsers.getUserByGoogleID(profile.id)
         .then(user => user
             ? done(null, user)
             : createUser(profile, done)

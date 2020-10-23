@@ -204,8 +204,11 @@ const App = () => {
         if (authorized) {
             setIsSaving(true)
             hotSaveTimeout = setTimeout(() => {
-                updateStateDB(result);
-                setIsSaving(false)
+                updateAllDB(result)
+                    .then(res => {
+                        res.status === 200
+                        && setIsSaving(false)
+                    })
             }, 1500)
         } else {
             updateLocalStorage(result);
