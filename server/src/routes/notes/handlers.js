@@ -1,4 +1,4 @@
-const db = require('../../lib/db');
+const db = require('../../lib/db/db_notes');
 
 const handleReadNotes = (req, res) => {
     db.readNotes(req.user.userID)
