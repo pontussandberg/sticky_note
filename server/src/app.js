@@ -4,7 +4,6 @@ const passport = require('passport')
 const cookieSession = require('cookie-session')
 const { notes, auth } = require('./routes')
 require('./lib/passport')
-require('dotenv').config()
 
 const port = process.env.PORT || 8080
 const app = express()
