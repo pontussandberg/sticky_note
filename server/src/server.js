@@ -1,14 +1,16 @@
 const http = require('http')
 const app = require('./app')
 const { disconnectDB, connectDB } = require('./lib/db')
-require('dotenv').config();
+require('dotenv').config()
 
 const server = http.createServer(app)
 
 const port = process.env.PORT || 8080
-server.listen(port, () => console.log(`listening on port: ${port}`))
 
 connectDB()
+
+server.listen(port, () => console.log(`listening on port: ${port}`))
+
 
 const terminate = () => {
     Object.values(io.sockets.sockets).forEach(socket => socket.disconnect())
