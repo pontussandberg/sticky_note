@@ -26,6 +26,6 @@
   },
   "homepage": "https://github.com/pontussandberg/sticky_note#readme",
   "dependencies": {
-    "react-dark-mode-toggle": "0.0.10"
+
   }
 }
