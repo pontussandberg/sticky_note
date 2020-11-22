@@ -32,7 +32,7 @@ const cssVars = {
         {varName: '--text-secondary', value: '#474747'}
     ],
     dark: [
-        {varName: '--primary', value: '#16131F'},
+        {varName: '--primary', value: '#15141B'},
         {varName: '--primary-indent', value: '#41434d'},
         {varName: '--blue', value: '#34353d'},
         {varName: '--select', value: '#464953'},
