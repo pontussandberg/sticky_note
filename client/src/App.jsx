@@ -32,12 +32,12 @@ const cssVars = {
         {varName: '--text-secondary', value: '#474747'}
     ],
     dark: [
-        {varName: '--primary', value: '#27252e'},
+        {varName: '--primary', value: '#16131F'},
         {varName: '--primary-indent', value: '#41434d'},
         {varName: '--blue', value: '#34353d'},
         {varName: '--select', value: '#464953'},
-        {varName: '--editor-bg', value: '#36393f'},
-        {varName: '--toolbar-bg', value: '#36393f'},
+        {varName: '--editor-bg', value: '#3D3F44'},
+        {varName: '--toolbar-bg', value: '#3D3F44'},
         {varName: '--editor-text', value: '#FFF'},
         {varName: '--text', value: '#FFF'},
         {varName: '--editor-icon', value: '#FFF'},
@@ -97,7 +97,7 @@ const App = () => {
     const [canSwitchMode, setCanSwitchMode] = useState(true)
     const [isLoginShown, setIsLoginShown] = useState(false)
 
-    // If OS has dark mode and current stick_note mode is light, 
+    // If OS has dark mode and current stick_note mode is light,
     // setting sticky_note mode to dark and setting this state to Local Storage.
     useEffect(() => {
         if(window.matchMedia('(prefers-color-scheme: dark)').matches && isLightMode) {
@@ -106,7 +106,7 @@ const App = () => {
     }, [])
 
     useEffect(() => {
-        const colors = isLightMode 
+        const colors = isLightMode
             ? cssVars.light
             : cssVars.dark
 
@@ -115,7 +115,7 @@ const App = () => {
 
     const initStickiesDB = savedStickies => {
         setIsLoading(true);
-    
+
         if (savedStickies && savedStickies.length > 0) {
             savedStickies = filterEmptyStickies(savedStickies)
             getNotes()
@@ -161,7 +161,7 @@ const App = () => {
             ? savedStickies
             : colToList(savedStickies)
 
-        
+
         authorized
             ? initStickiesDB(savedStickiesList)
             : savedStickiesList === null
@@ -262,11 +262,11 @@ const App = () => {
 
     const handleRemove = (quillID) => {
         const filtered = [...stickies].filter(x => x.quillID !== quillID);
-        
+
         if(filtered.length === 0) {
             filtered.push(...initStickie())
         }
-        
+
         const isOneDisplayed = filtered.some(x => x.isDisplayed);
         if (!isOneDisplayed) {
             filtered[0].isDisplayed = true;
