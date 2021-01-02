@@ -16,36 +16,38 @@ const mobileSize = 1200;
 
 const cssVars = {
     light: [
-        {varName: '--primary', value: '#f9f9f9'},
-        {varName: '--primary-indent', value: '#dddddd'},
-        {varName: '--blue', value: '#7191d1'},
-        {varName: '--select', value: '#253ea1'},
-        {varName: '--editor-bg', value: '#FFF'},
-        {varName: '--toolbar-bg', value: '#FFF'},
-        {varName: '--editor-text', value: '#111'},
-        {varName: '--text', value: '#111'},
-        {varName: '--editor-icon', value: '#111'},
-        {varName: '--cta', value: '#06c'},
-        {varName: '--code-block', value: '#292C3E'},
-        {varName: '--logout-btn-color', value: '#dd2b3d'},
-        {varName: '--border', value: '#ccc'},
-        {varName: '--text-secondary', value: '#474747'}
+        { varName: '--primary', value: '#f9f9f9' },
+        { varName: '--primary-indent', value: '#dddddd' },
+        { varName: '--blue', value: '#7191d1' },
+        { varName: '--select', value: '#253ea1' },
+        { varName: '--editor-bg', value: '#FFF' },
+        { varName: '--toolbar-bg', value: '#FFF' },
+        { varName: '--editor-text', value: '#111' },
+        { varName: '--text', value: '#111' },
+        { varName: '--editor-icon', value: '#111' },
+        { varName: '--cta', value: '#06c' },
+        { varName: '--code-block', value: '#292C3E' },
+        { varName: '--logout-btn-color', value: '#dd2b3d' },
+        { varName: '--border', value: '#ccc' },
+        { varName: '--text-secondary', value: '#474747' },
+        { varName: '--editor-code-block', value: '#41434d' },
     ],
     dark: [
-        {varName: '--primary', value: '#15141B'},
-        {varName: '--primary-indent', value: '#41434d'},
-        {varName: '--blue', value: '#34353d'},
-        {varName: '--select', value: '#464953'},
-        {varName: '--editor-bg', value: '#3D3F44'},
-        {varName: '--toolbar-bg', value: '#3D3F44'},
-        {varName: '--editor-text', value: '#FFF'},
-        {varName: '--text', value: '#FFF'},
-        {varName: '--editor-icon', value: '#FFF'},
-        {varName: '--cta', value: '#3e445f'},
-        {varName: '--code-block', value: '#41434d'},
-        {varName: '--logout-btn-color', value: '#FFF'},
-        {varName: '--border', value: '#27252e'},
-        {varName: '--text-secondary', value: '#a5a5a5'},
+        { varName: '--primary', value: '#15141B' },
+        { varName: '--primary-indent', value: '#41434d' },
+        { varName: '--blue', value: '#34353d' },
+        { varName: '--select', value: '#464953' },
+        { varName: '--editor-bg', value: '#3D3F44' },
+        { varName: '--toolbar-bg', value: '#3D3F44' },
+        { varName: '--editor-text', value: '#FFF' },
+        { varName: '--text', value: '#FFF' },
+        { varName: '--editor-icon', value: '#FFF' },
+        { varName: '--cta', value: '#3e445f' },
+        { varName: '--code-block', value: '#41434d' },
+        { varName: '--logout-btn-color', value: '#FFF' },
+        { varName: '--border', value: '#27252e' },
+        { varName: '--text-secondary', value: '#a5a5a5' },
+        { varName: '--editor-code-block', value: '#212227' },
     ]
 }
 
@@ -63,7 +65,7 @@ const filterEmptyStickies = (stickies) => {
 const filterDuplicates = (stickies) => {
     const addedIds = []
     return stickies.filter(stickie => {
-        if(addedIds.some(x => x === stickie.quillID)) {
+        if (addedIds.some(x => x === stickie.quillID)) {
             return false
         }
         addedIds.push(stickie.quillID)
@@ -100,7 +102,7 @@ const App = () => {
     // If OS has dark mode and current stick_note mode is light,
     // setting sticky_note mode to dark and setting this state to Local Storage.
     useEffect(() => {
-        if(window.matchMedia('(prefers-color-scheme: dark)').matches && isLightMode) {
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches && isLightMode) {
             handleLightModeToggle()
         }
     }, [])
@@ -207,7 +209,7 @@ const App = () => {
                 updateAllDB(result)
                     .then(res => {
                         res.status === 200
-                        && setIsSaving(false)
+                            && setIsSaving(false)
                     })
             }, 1500)
         } else {
@@ -217,10 +219,10 @@ const App = () => {
 
 
     const updateStateDB = list => {
-        if(!list) return
+        if (!list) return
 
         // Pretty hacky tbh
-        if(list.length > 0) {
+        if (list.length > 0) {
             authorized
                 ? updateAllDB(list)
                 : updateLocalStorage(list)
@@ -263,7 +265,7 @@ const App = () => {
     const handleRemove = (quillID) => {
         const filtered = [...stickies].filter(x => x.quillID !== quillID);
 
-        if(filtered.length === 0) {
+        if (filtered.length === 0) {
             filtered.push(...initStickie())
         }
 
@@ -305,7 +307,7 @@ const App = () => {
         : 'app'
 
     const handleLightModeToggle = () => {
-        if(canSwitchMode) {
+        if (canSwitchMode) {
             setCanSwitchMode(false)
             setTimeout(() => {
                 setCanSwitchMode(true)
@@ -322,7 +324,7 @@ const App = () => {
 
     return (
         <div className={getAppClasses()}>
-            { isLoginShown ? <Login onToggleLogin={onToggleLogin} /> : null }
+            { isLoginShown ? <Login onToggleLogin={onToggleLogin} /> : null}
             <Header
                 isLightMode={isLightMode}
                 onLightModeToggle={handleLightModeToggle}

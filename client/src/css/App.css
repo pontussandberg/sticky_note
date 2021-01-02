@@ -13,6 +13,10 @@ body{
     background-color: var(--primary);
 }
 
+.ql-editor > pre.ql-syntax {
+    background: var(--editor-code-block) !important;
+}
+
 button {
     cursor: pointer;
     margin: 0;
