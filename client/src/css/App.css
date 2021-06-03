@@ -59,11 +59,8 @@ button:focus {
 
 .app{
     height: 100vh;
-    display: grid;
-    grid-template-columns: auto 1fr;
-    grid-template-rows: auto 1fr;
+    display: flex;
     background: var(--primary);
-    padding: 0 25px 25px 25px;
     overflow: hidden;
 }
 
@@ -74,6 +71,7 @@ button:focus {
 
 .hidden{
     display: none !important;
+    overflow: hidden !important;
 }
 
 
@@ -82,8 +80,5 @@ button:focus {
 }
 
 @media only screen and (max-width: 1200px) {
-    .app{
-        padding: 0;
-        padding-left: 5px;  
-    }
+
 }

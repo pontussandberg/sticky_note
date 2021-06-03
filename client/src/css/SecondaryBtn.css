@@ -20,14 +20,3 @@
     padding: 8px 0;
     color: #fff;
 }
-
-
-@media only screen and (max-width: 1200px) {
-    .secondary-btn__text {
-        font-size: 14px;
-        padding: 4px 0;
-    }
-    .secondary-btn {
-        width: 70px !important;
-    }
-}

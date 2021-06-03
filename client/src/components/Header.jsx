@@ -9,28 +9,33 @@ const getAuthButtons = (authorized, onLogout, onToggleLogin) => authorized
     : <SecondaryBtn text='Log in' onClick={onToggleLogin} />
 
 
-const getHeaderClasses = (isSidebarOpen, isMobile) => !isSidebarOpen && isMobile
-    ? 'hidden'
-    : 'header'
+const Header = ({ onSidebarToggle,
+                  authorized, onLogout, isMobile,
+                  onLightModeToggle, isLightMode,
+                  onToggleLogin, isSidebarOpen }) => {
+// -->
+    return (
+        <header className={isSidebarOpen ? 'header' : 'header header--closed'}>
+            <div className="flex flex--jc-center">
+                <Hamburger
+                onClick={onSidebarToggle}
+                isSidebarOpen={isSidebarOpen}
+                isMobile={isMobile}
+                />
 
-const Header = ({ onSidebarToggle, isSidebarOpen,
-                authorized, onLogout, isMobile,
-                onLightModeToggle, isLightMode, onToggleLogin }) => (
+                <button className={isSidebarOpen ? 'toggle-button add32left' : 'hidden'} onClick={onLightModeToggle}>
+                    <DarkModeToggle
+                    checked={!isLightMode}
+                    size={isMobile ? 50 : 60}
+                    />
+                </button>
+            </div>
 
-    <header className={getHeaderClasses(isSidebarOpen, isMobile)}>
-
-        <Hamburger onClick={onSidebarToggle} />
-
-        <h1 className="header__heading">STICKY NOTE</h1>
-
-        <button className='toggle-button' onClick={onLightModeToggle}>
-            <DarkModeToggle 
-                checked={!isLightMode}
-                size={isMobile ? 50 : 60}
-            />
-        </button>
-        {getAuthButtons(authorized, onLogout, onToggleLogin)}
-    </header>
-);
+            <div className={isSidebarOpen ? 'header__login' : 'hidden'}>
+                {getAuthButtons(authorized, onLogout, onToggleLogin)}
+            </div>
+        </header>
+    )
+}
 
 export default Header;

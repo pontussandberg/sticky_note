@@ -1,10 +1,15 @@
 .hamburger-container {
-    height: 35px;
-    width: 35px;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-left: 9px;
 }
+
+.hamburger-container--mobile-closed {
+    margin-left: 3px;
+}
+
+
 
 .hamburger{
     background: none;
@@ -12,7 +17,6 @@
     cursor: pointer;
     height: 25px;
     width: 25px;
-    margin-left: 15px;
 }
 
 .hamburger svg{
@@ -27,9 +31,6 @@
 }
 
 @media only screen and (max-width: 1200px) {
-    .hamburger {
-        margin-left: 0px;
-    }
     .hamburger-container {
         width: 25px;
     }
