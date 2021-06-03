@@ -4,7 +4,7 @@ import StickieToolbar from './StickieToolbar';
 
 
 function Stickie(props) {
-    // ref to the stickie dom element 
+    // ref to the stickie dom element
     const stickieRef = useRef();
     const [quill, setQuill] = useState(null);
     const [noteHeader, setNoteHeader] = useState(props.stickie.noteHeader);
@@ -48,7 +48,6 @@ function Stickie(props) {
     return (
         <div className="stickie" ref={stickieRef}>
             <StickieToolbar id={props.stickie.toolbarID} isSaving={props.isSaving} />
-            {/* <div id="editor-container"></div> */}
             <div className="textarea" id={props.stickie.quillID}></div>
         </div>
     );
