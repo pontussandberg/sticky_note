@@ -6,7 +6,7 @@
     flex-direction: column;
 }
 
-.textarea{  
+.textarea{
     flex: 1;
     outline: none;
     border: none !important;
@@ -19,6 +19,7 @@
     font-size: 16px;
     outline: none;
     border-top: 1px solid var(--border);
+    padding: 20px 30px;
 }
 
 .ql-editor > * {
@@ -109,6 +110,7 @@ pre.ql-syntax{
         margin: 0 10px;
     }
     .ql-editor {
+        padding: 12px 15px;
         border-top: none;
     }
     .toolbar{
@@ -121,7 +123,7 @@ pre.ql-syntax{
         width: 100%;
     }
     .toolbar button{
-        margin: 0 5px !important;  
+        margin: 0 5px !important;
     }
 
     .saved-indicator-container {
