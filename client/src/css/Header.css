@@ -1,13 +1,19 @@
 .header{
-    grid-column: 1/3;
     height: 60px;
     background: var(--primary);
     width: 100%;
     display: grid;
-    grid-template-columns: auto 1fr auto auto;
+    grid-template-columns: 1fr 1fr;
     align-items: center;
     justify-items: start;
-    padding-right: 5px;
+}
+
+.header--closed {
+    grid-template-columns: 100%;
+}
+
+.header__login {
+    justify-self: end;
 }
 
 .toggle-button {
@@ -22,19 +28,4 @@
     color: var(--text);
     font-size: 24px;
     margin-left: 45px;
-}
-
-
-@media only screen and (max-width: 1200px) {
-    .header__heading{
-        font-size: 24px;
-        margin-left: 0;
-        justify-self: center;
-    }
-    .header{
-        height: 35px;
-    }
-    .toggle-button {
-        margin-right: 5px;
-    }
 }

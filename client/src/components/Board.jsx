@@ -17,7 +17,7 @@ const Board = ({ stickies, isSidebarOpen, changeHeading, onStickiesUpdate, isMob
     };
 
     const getBoardClasses = () => isSidebarOpen && isMobile
-        ? 'hidden'
+        ? 'board--hidden'
         : 'board';
 
     return (

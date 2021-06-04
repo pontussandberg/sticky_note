@@ -3,10 +3,11 @@ import AddBtn from './AddBtn';
 import ListStickie from './ListStickie';
 import Spinner from '../Spinner';
 import Hamburger from '../Hamburger';
+import Header from '../Header';
 
 
 const deleteMsg = ({ noteHeader }) => `
-Are your sure that you want to delete "${noteHeader}"? 
+Are your sure that you want to delete "${noteHeader}"?
 This action can not be undone.
 `;
 
@@ -23,6 +24,12 @@ const SideBar = ({
     onMoveUp,
     isLoading,
     isMobile,
+    onLogout,
+    isLightMode,
+    authorized,
+    onLightModeToggle,
+    onToggleLoginModal,
+
 }) => {
     const handleListClick = (quillID) => {
         displayStickie(quillID);
@@ -44,14 +51,20 @@ const SideBar = ({
             ? "sidebar"
             : "sidebar sidebar--closed"
 
-    const getHamburgerClasses = () => !isSidebarOpen && isMobile
-        ? ''
-        : 'hidden'
-
     return (
         <>
             <div className={getSidebarClasses()}>
-                <Hamburger onClick={onSidebarToggle} classes={getHamburgerClasses()} />
+            <Header
+                isLightMode={isLightMode}
+                authorized={authorized}
+                onLightModeToggle={onLightModeToggle}
+                isSidebarOpen={isSidebarOpen}
+                onSidebarToggle={onSidebarToggle}
+                isMobile={isMobile}
+                onLogout={onLogout}
+                onToggleLoginModal={onToggleLoginModal}
+                isSidebarOpen={isSidebarOpen}
+            />
                 <AddBtn onAdd={onAdd} isSidebarOpen={isSidebarOpen} isMobile={isMobile} />
                 <div className="sidebar__list-container">
                     <ul>

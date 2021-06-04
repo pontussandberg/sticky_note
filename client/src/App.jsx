@@ -8,7 +8,6 @@ import { displayFirstStickie } from './lib/utils/helpers';
 import updateLocalStorage from './lib/update_LS';
 import Board from './components/Board';
 import SideBar from './components/sidebar/Sidebar';
-import Header from './components/Header';
 import Login from './components/Login';
 
 let hotSaveTimeout;
@@ -97,7 +96,7 @@ const App = () => {
     const [isSaving, setIsSaving] = useState(false);
     const [isLightMode, setIsLightMode] = useState(getSavedTheme());
     const [canSwitchMode, setCanSwitchMode] = useState(true)
-    const [isLoginShown, setIsLoginShown] = useState(false)
+    const [isLoginModalActive, setIsLoginModalActive] = useState(false)
 
     // If OS has dark mode and current stick_note mode is light,
     // setting sticky_note mode to dark and setting this state to Local Storage.
@@ -318,24 +317,17 @@ const App = () => {
         }
     }
 
-    const onToggleLogin = () => {
-        setIsLoginShown(!isLoginShown)
+    const handleToggleLoginModal = () => {
+        setIsLoginModalActive(!isLoginModalActive)
+    }
+
+    const handleLogOut = () => {
+        setAuthorized(false)
     }
 
     return (
         <div className={getAppClasses()}>
-            { isLoginShown ? <Login onToggleLogin={onToggleLogin} /> : null}
-            <Header
-                isLightMode={isLightMode}
-                onLightModeToggle={handleLightModeToggle}
-                isSidebarOpen={isSidebarOpen}
-                onSidebarToggle={handleSidebarToggle}
-                onAddGuide={handleAddGuide}
-                authorized={authorized}
-                isMobile={isMobile}
-                onLogout={() => setAuthorized(false)}
-                onToggleLogin={onToggleLogin}
-            />
+            { isLoginModalActive ? <Login onToggleLoginModal={handleToggleLoginModal} /> : null}
             <SideBar
                 isLoading={isLoading}
                 onMoveUp={handleMoveUp}
@@ -347,7 +339,11 @@ const App = () => {
                 onRemove={handleRemove}
                 onAdd={handleAdd}
                 stickies={stickies}
-                onLogout={() => setAuthorized(false)}
+                onLogout={handleLogOut}
+                isLightMode={isLightMode}
+                authorized={authorized}
+                onLightModeToggle={handleLightModeToggle}
+                onToggleLoginModal={handleToggleLoginModal}
             />
             <Board
                 isSaving={isSaving}

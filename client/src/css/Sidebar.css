@@ -1,27 +1,19 @@
 .sidebar{
-    min-width: 330px;
-    max-width: 330px;
+    width: 370px;
     background: var(--primary);
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    padding-right: 5px;
+    padding: 0 16px;
+    transition: all ease-in-out .2s;
 }
 
 .sidebar--open-mobile {
-    grid-column: 1 / 3;
-    min-width: 100% !important;
-    max-width: 100% !important;
-}
-
-
-.sidebar > *{
-    padding-right: 20px;
+    width: 100vw;
 }
 
 .sidebar--closed{
-    min-width: 80px;
-    max-width: 80px;
+    width: 80px;
 }
 
 .sidebar__heading {
@@ -82,12 +74,9 @@
 
 
 @media only screen and (max-width: 1200px) {
-    .sidebar{
-        transition: ease-in-out .2s all;
-    }
     .sidebar--closed{
-        min-width: 30px;
-        max-width: 30px;
+        width: 40px;
+        padding: 0 5px;
     }
     .sidebar > *{
         padding-right: 0;
