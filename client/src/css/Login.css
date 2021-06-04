@@ -7,9 +7,11 @@
     align-items: center;
     height: 100vh;
     width: 100vw;
-    background: transparent;
+    background: rgba(0, 0, 0, 0.5);
+    cursor: pointer;
 }
 .login-container__login {
+    cursor: default;
     position: relative;
     width: 500px;
     margin-bottom: 200px;

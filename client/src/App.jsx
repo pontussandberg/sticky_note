@@ -15,7 +15,7 @@ const mobileSize = 1200;
 
 const cssVars = {
     light: [
-        { varName: '--primary', value: '#f9f9f9' },
+        { varName: '--primary', value: '#edf0f1' },
         { varName: '--primary-indent', value: '#dddddd' },
         { varName: '--blue', value: '#7191d1' },
         { varName: '--select', value: '#253ea1' },
