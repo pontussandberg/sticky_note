@@ -4,15 +4,15 @@ import SecondaryBtn from './buttons/SecondaryBtn';
 import Hamburger from './Hamburger';
 import DarkModeToggle from "react-dark-mode-toggle";
 
-const getAuthButtons = (authorized, onLogout, onToggleLogin) => authorized
+const getAuthButtons = (authorized, onLogout, onToggleLoginModal) => authorized
     ? <LogoutBtn onLogout={onLogout} />
-    : <SecondaryBtn text='Log in' onClick={onToggleLogin} />
+    : <SecondaryBtn text='Log in' onClick={onToggleLoginModal} />
 
 
 const Header = ({ onSidebarToggle,
                   authorized, onLogout, isMobile,
                   onLightModeToggle, isLightMode,
-                  onToggleLogin, isSidebarOpen }) => {
+                  onToggleLoginModal, isSidebarOpen }) => {
 // -->
     return (
         <header className={isSidebarOpen ? 'header' : 'header header--closed'}>
@@ -32,7 +32,7 @@ const Header = ({ onSidebarToggle,
             </div>
 
             <div className={isSidebarOpen ? 'header__login' : 'hidden'}>
-                {getAuthButtons(authorized, onLogout, onToggleLogin)}
+                {getAuthButtons(authorized, onLogout, onToggleLoginModal)}
             </div>
         </header>
     )
