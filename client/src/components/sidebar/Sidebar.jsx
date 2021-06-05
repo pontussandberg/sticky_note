@@ -1,6 +1,6 @@
 import React from 'react';
 import AddBtn from './AddBtn';
-import ListStickie from './ListStickie';
+import ListTextDoc from './ListTextDoc';
 import Spinner from '../Spinner';
 import Hamburger from '../Hamburger';
 import Header from '../Header';
@@ -14,8 +14,8 @@ This action can not be undone.
 
 
 const SideBar = ({
-    stickies,
-    displayStickie,
+    textDocs,
+    displayTextDoc,
     onRemove,
     onSidebarToggle,
     isSidebarOpen,
@@ -32,16 +32,16 @@ const SideBar = ({
 
 }) => {
     const handleListClick = (quillID) => {
-        displayStickie(quillID);
+        displayTextDoc(quillID);
 
         if (isMobile && isSidebarOpen) {
             onSidebarToggle();
         }
     }
 
-    const checkRemove = stickie => {
-        if (window.confirm(deleteMsg(stickie))) {
-            onRemove(stickie.quillID);
+    const checkRemove = textDoc => {
+        if (window.confirm(deleteMsg(textDoc))) {
+            onRemove(textDoc.quillID);
         }
     }
 
@@ -70,11 +70,11 @@ const SideBar = ({
                     <ul>
                         {isLoading
                             ? <Spinner />
-                            : stickies.map(x => (
-                                <ListStickie
+                            : textDocs.map(x => (
+                                <ListTextDoc
                                     key={x.quillID}
-                                    stickie={x}
-                                    stickies={stickies}
+                                    textDoc={x}
+                                    textDocs={textDocs}
                                     isSidebarOpen={isSidebarOpen}
                                     onMoveUp={onMoveUp}
                                     checkRemove={checkRemove}

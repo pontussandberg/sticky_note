@@ -1,4 +1,4 @@
-.list-stickie {
+.list-text-doc {
     padding: 0 25px;
     height: 50px;
     white-space: nowrap;
@@ -14,16 +14,16 @@
     transition: box-shadow .2s ease, height .2s ease;
 }
 
-.list-stickie:hover {
+.list-text-doc:hover {
     background: var(--select);
 }
 
-.list-stickie--selected {
+.list-text-doc--selected {
     background: var(--select) !important;
 }
 
 
-.list-stickie__btn{
+.list-text-doc__btn{
     overflow: hidden;
     padding: 10px 0;
     -webkit-box-flex: 1;
@@ -39,7 +39,7 @@
     font-size: 18px;
     cursor: pointer;
 }
-.list-stickie__btn span{
+.list-text-doc__btn span{
     width: 200px;
     text-align: left;
     overflow: hidden;
@@ -48,7 +48,7 @@
 }
 
 
-.list-stickie__bullet {
+.list-text-doc__bullet {
     text-align: center;
     width: 100%;
     font-size: 30px;
@@ -60,44 +60,44 @@
     justify-content: center;
 }
 
-.list-stickie__arrow {
+.list-text-doc__arrow {
     background: none;
     margin-left: 7px;
 }
 
-.list-stickie__arrow svg {
+.list-text-doc__arrow svg {
     height: 20px;
     width: 20px;
     background: none;
     fill: #fff;
 }
 
-.list-stickie__arrow svg:hover {
+.list-text-doc__arrow svg:hover {
     fill: var(--green);
 }
 
-.list-stickie__del, .list-stickie__del svg {
+.list-text-doc__del, .list-text-doc__del svg {
     background: none;
     border: none;
     width: 15px;
     height: 15px;
     margin-left:7px;
 }
-.list-stickie__del svg line {
+.list-text-doc__del svg line {
     stroke: #fff;
     fill: #fff;
     z-index: 1;
 }
-.list-stickie__del:hover svg line {
+.list-text-doc__del:hover svg line {
     fill: #dd3445;
     stroke: #dd3445;
 }
 
 @media only screen and (max-width: 1200px) {
-    .list-stickie {
+    .list-text-doc {
         height: 45px;
     }
-    .list-stickie--closed {
+    .list-text-doc--closed {
         height: 25px !important;
     }
 }

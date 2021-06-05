@@ -1,6 +1,6 @@
 import React from 'react';
 
-const StickieToolbar = ({ id, isSaving }) => (
+const TextEditor = ({ id, isSaving }) => (
     <div className="toolbar-wrapper">
         <div id={id} className="toolbar">
             <span className="row1">
@@ -39,4 +39,4 @@ const StickieToolbar = ({ id, isSaving }) => (
     </div>
 );
 
-export default StickieToolbar;
+export default TextEditor;

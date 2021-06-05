@@ -1,5 +1,5 @@
 const updateLocalStorage = data => {
-    localStorage.setItem('stickies', JSON.stringify(data));
+    localStorage.setItem('textDocs', JSON.stringify(data));
 }
 
 export default updateLocalStorage

@@ -1,4 +1,4 @@
-import { displayFirstStickie } from './utils/helpers';
+import { displayFirstTextDoc } from './utils/helpers';
 
 
 const getNotes = () => fetch('/api/notes')
@@ -7,7 +7,7 @@ const getNotes = () => fetch('/api/notes')
         ? data.notes
         : []
     )
-    .then(displayFirstStickie)
+    .then(displayFirstTextDoc)
     .catch(console.error);
 
 const updateAllDB = data => fetch('/api/notes', {
@@ -16,9 +16,9 @@ const updateAllDB = data => fetch('/api/notes', {
     headers: { 'Content-Type': 'application/json' }
 });
 
-const updateOneDB = stickie => fetch(`/api/notes/${stickie.quillID}`, {
+const updateOneDB = textDoc => fetch(`/api/notes/${textDoc.quillID}`, {
     method: 'PUT',
-    body: JSON.stringify(stickie),
+    body: JSON.stringify(textDoc),
     headers: { 'Content-Type': 'application/json' }
 });
 

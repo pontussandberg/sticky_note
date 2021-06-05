@@ -2,21 +2,10 @@
     background: var(--editor-bg);
     flex-grow: 1;
     display: flex;
-    overflow: hidden;
-    position: relative;
-    z-index: 10000;
+    flex-direction: column;
 }
 
-.board--hidden {
-    width: 0 !important;
-    overflow: hidden;
-}
-
-
-
-
-@media only screen and (max-width: 1200px) {
-    .board{
-        z-index: 0;
-    }
+.board-header {
+    height: 40px;
+    background: #34363a;
 }

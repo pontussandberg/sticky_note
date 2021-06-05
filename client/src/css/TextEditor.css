@@ -1,4 +1,4 @@
-.stickie{
+.text-editor{
     flex-grow: 1;
     background: var(--editor-bg);
     color: var(--editor-text);

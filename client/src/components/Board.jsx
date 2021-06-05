@@ -1,29 +1,27 @@
 import React from 'react';
-import Stickie from './stickie/Stickie';
+import TextEditor from './editors/TextEditor';
+import BoardHeader from './BoardHeader';
 
-const Board = ({ stickies, isSidebarOpen, changeHeading, onStickiesUpdate, isMobile, isSaving }) => {
-    const renderStickie = () => {
-        const x = stickies.find(x => x.isDisplayed);
-        return x
-            ? (<Stickie
+const Board = ({ textDocs, isSidebarOpen, changeHeading, onTextDocUpdate, isSaving }) => {
+    const renderEditor = () => {
+        const currDisplayedDoc = textDocs.find(x => x.isDisplayed);
+        return currDisplayedDoc
+            ? (<TextEditor
                 isSidebarOpen={isSidebarOpen}
-                key={x.quillID}
-                stickie={x}
+                key={currDisplayedDoc.quillID}
+                textDoc={currDisplayedDoc}
                 changeHeading={changeHeading}
-                onStickiesUpdate={onStickiesUpdate}
+                onTextDocUpdate={onTextDocUpdate}
                 isSaving={isSaving}
             />)
             : null;
     };
 
-    const getBoardClasses = () => isSidebarOpen && isMobile
-        ? 'board--hidden'
-        : 'board';
 
     return (
-        <div className={getBoardClasses()}>
-            {/* <div className="no-open"></div> */}
-            {renderStickie()}
+        <div className="board">
+            <BoardHeader />
+            {renderEditor()}
         </div>
     );
 }

@@ -4,7 +4,7 @@ import shortid from 'shortid';
 import { guideStr } from './guide_string.json';
 import { getNotes, updateAllDB, authenticate } from './lib/db_connections';
 import { colToList } from './lib/utils/modeling';
-import { displayFirstStickie } from './lib/utils/helpers';
+import { displayFirstTextDoc } from './lib/utils/helpers';
 import updateLocalStorage from './lib/update_LS';
 import Board from './components/Board';
 import SideBar from './components/sidebar/Sidebar';
@@ -57,22 +57,22 @@ const setCssVar = (varName, value) => {
         .setProperty(varName, value)
 }
 
-const filterEmptyStickies = (stickies) => {
-    return stickies.filter(stickie => stickie.contentHTML.length > 0)
+const filterEmptyTextDocs = (textDocs) => {
+    return textDocs.filter(textDoc => textDoc.contentHTML.length > 0)
 }
 
-const filterDuplicates = (stickies) => {
+const filterDuplicates = (textDocs) => {
     const addedIds = []
-    return stickies.filter(stickie => {
-        if (addedIds.some(x => x === stickie.quillID)) {
+    return textDocs.filter(textDoc => {
+        if (addedIds.some(x => x === textDoc.quillID)) {
             return false
         }
-        addedIds.push(stickie.quillID)
+        addedIds.push(textDoc.quillID)
         return true;
     })
 }
 
-const initStickie = () => [{
+const initTextDoc = () => [{
     quillID: 'q' + shortid.generate(),
     toolbarID: 't' + shortid.generate(),
     noteHeader: 'Empty Note',
@@ -88,7 +88,9 @@ const getSavedTheme = () => {
 }
 
 const App = () => {
-    const [stickies, setStickies] = useState([]);
+
+    // # State #
+    const [textDocs, setTextDocs] = useState([]);
     const [isSidebarOpen, setIsSidebarOpen] = useState(true);
     const [authorized, setAuthorized] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
@@ -97,6 +99,8 @@ const App = () => {
     const [isLightMode, setIsLightMode] = useState(getSavedTheme());
     const [canSwitchMode, setCanSwitchMode] = useState(true)
     const [isLoginModalActive, setIsLoginModalActive] = useState(false)
+    // -->
+
 
     // If OS has dark mode and current stick_note mode is light,
     // setting sticky_note mode to dark and setting this state to Local Storage.
@@ -114,13 +118,13 @@ const App = () => {
         colors.forEach(x => setCssVar(x.varName, x.value))
     }, [isLightMode])
 
-    const initStickiesDB = savedStickies => {
+    const initTextDocsDB = savedTextDocs => {
         setIsLoading(true);
 
-        if (savedStickies && savedStickies.length > 0) {
-            savedStickies = filterEmptyStickies(savedStickies)
+        if (savedTextDocs && savedTextDocs.length > 0) {
+            savedTextDocs = filterEmptyTextDocs(savedTextDocs)
             getNotes()
-                .then(db => displayFirstStickie([...db, ...savedStickies]))
+                .then(db => displayFirstTextDoc([...db, ...savedTextDocs]))
                 .then(filterDuplicates)
                 .then(merged => updateStateDB(merged))
                 .then(() => localStorage.clear())
@@ -130,8 +134,8 @@ const App = () => {
         else {
             getNotes()
                 .then(db => db && db.length > 0
-                    ? setStickies(db)
-                    : updateStateDB(initStickie())
+                    ? setTextDocs(db)
+                    : updateStateDB(initTextDoc())
                 )
                 .then(() => setIsLoading(false))
         }
@@ -149,25 +153,25 @@ const App = () => {
             });
     }, []);
 
-    // Initializing state with saved stickies either in localstorage
-    // or DB. If stickies are saved in LS and the user is authorized,
+    // Initializing state with saved textDocs either in localstorage
+    // or DB. If textDocs are saved in LS and the user is authorized,
     // LS will be cleared and merged with DB.
     useEffect(() => {
-        let savedStickies = JSON.parse(localStorage.getItem('stickies'));
-        savedStickies = savedStickies === null
+        let savedTextDocs = JSON.parse(localStorage.getItem('textDocs'));
+        savedTextDocs = savedTextDocs === null
             ? []
-            : savedStickies
+            : savedTextDocs
 
-        const savedStickiesList = Array.isArray(savedStickies)
-            ? savedStickies
-            : colToList(savedStickies)
+        const savedTextDocsList = Array.isArray(savedTextDocs)
+            ? savedTextDocs
+            : colToList(savedTextDocs)
 
 
         authorized
-            ? initStickiesDB(savedStickiesList)
-            : savedStickiesList === null
-                ? setStickies(initStickie())
-                : setStickies(savedStickiesList)
+            ? initTextDocsDB(savedTextDocsList)
+            : savedTextDocsList === null
+                ? setTextDocs(initTextDoc())
+                : setTextDocs(savedTextDocsList)
     }, [authorized]);
 
     useEffect(() => {
@@ -188,18 +192,18 @@ const App = () => {
 
     // ### HANDLERS ###
 
-    // Updating state when Stickie.jsx updates, has to stop typing for
+    // Updating state when en editor updates, has to stop typing for
     // 3 secs before the request is made.
-    const handleStickiesUpdate = (quillID, contentHTML, noteHeader) => {
+    const handleTextDocUpdate = (quillID, contentHTML, noteHeader) => {
         clearTimeout(hotSaveTimeout);
-        const result = stickies.map(x => {
+        const result = textDocs.map(x => {
             if (x.quillID === quillID) {
                 x.contentHTML = contentHTML;
                 x.noteHeader = noteHeader;
             }
             return x;
         });
-        setStickies(result);
+        setTextDocs(result);
 
 
         if (authorized) {
@@ -226,20 +230,20 @@ const App = () => {
                 ? updateAllDB(list)
                 : updateLocalStorage(list)
 
-            setStickies(list);
+            setTextDocs(list);
         }
     };
 
 
-    const handleDisplaySticke = (quillID) => {
-        const list = [...stickies].map(x => {
+    const handleDisplayTextDoc = (quillID) => {
+        const list = [...textDocs].map(x => {
             x.quillID === quillID
                 ? x.isDisplayed = true
                 : x.isDisplayed = false
             return x;
         });
         // Would be unnecessary to update DB here.
-        setStickies(list);
+        setTextDocs(list);
     }
 
     const handleSidebarToggle = () => {
@@ -247,25 +251,25 @@ const App = () => {
     }
 
     const handleAdd = () => {
-        const stickie = {
+        const textDoc = {
             quillID: 'q' + shortid.generate(),
             toolbarID: 't' + shortid.generate(),
             noteHeader: 'Empty Note',
             isDisplayed: true,
             contentHTML: ''
         }
-        const stickiesCopy = [...stickies];
-        stickiesCopy.forEach(stickie => stickie.isDisplayed = false);
+        const textDocsCopy = [...textDocs];
+        textDocsCopy.forEach(textDoc => textDoc.isDisplayed = false);
 
-        stickiesCopy.unshift(stickie);
-        updateStateDB(stickiesCopy);
+        textDocsCopy.unshift(textDoc);
+        updateStateDB(textDocsCopy);
     }
 
     const handleRemove = (quillID) => {
-        const filtered = [...stickies].filter(x => x.quillID !== quillID);
+        const filtered = [...textDocs].filter(x => x.quillID !== quillID);
 
         if (filtered.length === 0) {
-            filtered.push(...initStickie())
+            filtered.push(...initTextDoc())
         }
 
         const isOneDisplayed = filtered.some(x => x.isDisplayed);
@@ -276,28 +280,28 @@ const App = () => {
     }
 
     const handleAddGuide = () => {
-        const stickie = {
+        const textDoc = {
             quillID: 'q' + shortid.generate(),
             toolbarID: 't' + shortid.generate(),
             contentHTML: guideStr,
             noteHeader: 'Guide',
             isDisplayed: true
         }
-        const stickiesCopy = [...stickies];
-        stickiesCopy.forEach(stickie => stickie.isDisplayed = false);
+        const textDocsCopy = [...textDocs];
+        textDocsCopy.forEach(textDoc => textDoc.isDisplayed = false);
 
-        updateStateDB([stickie, ...stickiesCopy]);
+        updateStateDB([textDoc, ...textDocsCopy]);
     };
 
     const handleMoveUp = (quillID) => {
-        const stickiesCopy = [...stickies];
-        stickiesCopy.forEach((x, i) => {
+        const textDocsCopy = [...textDocs];
+        textDocsCopy.forEach((x, i) => {
             if (x.quillID === quillID) {
-                stickiesCopy.splice(i, 1);
-                stickiesCopy.splice(i - 1, 0, x);
+                textDocsCopy.splice(i, 1);
+                textDocsCopy.splice(i - 1, 0, x);
             }
         });
-        updateStateDB(stickiesCopy);
+        updateStateDB(textDocsCopy);
     }
 
 
@@ -334,11 +338,11 @@ const App = () => {
                 onAddGuide={handleAddGuide}
                 isSidebarOpen={isSidebarOpen}
                 onSidebarToggle={handleSidebarToggle}
-                displayStickie={handleDisplaySticke}
+                displayTextDoc={handleDisplayTextDoc}
                 isMobile={isMobile}
                 onRemove={handleRemove}
                 onAdd={handleAdd}
-                stickies={stickies}
+                textDocs={textDocs}
                 onLogout={handleLogOut}
                 isLightMode={isLightMode}
                 authorized={authorized}
@@ -348,11 +352,11 @@ const App = () => {
             <Board
                 isSaving={isSaving}
                 isLoading={isLoading}
-                onStickiesUpdate={handleStickiesUpdate}
+                onTextDocUpdate={handleTextDocUpdate}
                 isSidebarOpen={isSidebarOpen}
                 isMobile={isMobile}
                 onRemove={handleRemove}
-                stickies={stickies}
+                textDocs={textDocs}
             />
         </div>
     );
