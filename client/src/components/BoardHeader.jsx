@@ -1,6 +1,6 @@
 import React from 'react';
 
-function BoardHeader({ sortedTextDocs, displayTextDoc }) {
+function BoardHeader({ sortedTextDocs, displayTextDoc, closeTab }) {
     const getTabClasses = (textDoc, isNextActive, isPrevActive) => {
         let classes = 'board-header__tab '
 
@@ -28,6 +28,11 @@ function BoardHeader({ sortedTextDocs, displayTextDoc }) {
         return classes
     }
 
+    const handleCloseTab = (event, quillID) => {
+        event.stopPropagation()
+        closeTab(quillID)
+    }
+
     const renderTabs = () => {
         //console.log(sortedTextDocs)
         return sortedTextDocs.map((textDoc, i) => {
@@ -39,6 +44,15 @@ function BoardHeader({ sortedTextDocs, displayTextDoc }) {
                 className={getTabClasses(textDoc, isNextActive, isPrevActive)}
                 >
                     <span className="tab__title">{textDoc.noteHeader}</span>
+
+                    <div onClick={(event) => handleCloseTab(event, textDoc.quillID)} className="tab__close">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="9.9" height="9.9" viewBox="0 0 9.9 9.9">
+                            <g id="Group_8" data-name="Group 8" transform="translate(-1177.793 -705.237)">
+                                <rect id="Rectangle_10" data-name="Rectangle 10" width="13" height="1" rx="0.5" transform="translate(1178.5 705.237) rotate(45)" fill="#fff"/>
+                                <rect id="Rectangle_11" data-name="Rectangle 11" width="13" height="1" rx="0.5" transform="translate(1177.793 714.43) rotate(-45)" fill="#fff"/>
+                            </g>
+                        </svg>
+                    </div>
                 </div>
             )
         })

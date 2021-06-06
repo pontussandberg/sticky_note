@@ -364,6 +364,24 @@ const App = () => {
         setAuthorized(false)
     }
 
+    const handleCloseTab = (quillID) => {
+        const result = [...textDocs].map(textDoc => {
+            const isTarget = textDoc.quillID === quillID
+            const tabPos = isTarget ? -1 : textDoc.tabPos
+            const isDisplayed = textDoc.quillID === quillID && textDoc.isDisplayed
+                ? false
+                : textDoc.isDisplayed
+
+            return {
+                ...textDoc,
+                tabPos,
+                isDisplayed
+            }
+        })
+
+        setTextDocs(result)
+    }
+
     return (
         <div className={getAppClasses()}>
             { isLoginModalActive ? <Login onToggleLoginModal={handleToggleLoginModal} /> : null}
@@ -385,6 +403,7 @@ const App = () => {
                 onToggleLoginModal={handleToggleLoginModal}
             />
             <Board
+                closeTab={handleCloseTab}
                 displayTextDoc={handleDisplayTextDoc}
                 isSaving={isSaving}
                 isLoading={isLoading}

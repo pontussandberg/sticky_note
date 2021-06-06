@@ -42,7 +42,15 @@
     background: var(--editor-bg-darker)
 }
 
+.tab__close {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
 .tab__title {
+    flex-grow: 1;
     overflow: hidden;
     text-overflow: ellipsis;
 }

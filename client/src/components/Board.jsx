@@ -5,7 +5,8 @@ import BoardHeader from './BoardHeader';
 
 
 const Board = ({ textDocs, isSidebarOpen, changeHeading,
-                onTextDocUpdate, isSaving, displayTextDoc }) => {
+                onTextDocUpdate, isSaving, displayTextDoc,
+                closeTab }) => {
 
     const sortedTabPosTextDocs = () => {
         const filtered = textDocs.filter(textDoc => typeof textDoc.tabPos === 'number' && textDoc.tabPos >= 0)
@@ -48,7 +49,7 @@ const Board = ({ textDocs, isSidebarOpen, changeHeading,
 
     return (
         <div className="board">
-            <BoardHeader displayTextDoc={displayTextDoc} sortedTextDocs={sortedTabPosTextDocs()} />
+            <BoardHeader closeTab={closeTab} displayTextDoc={displayTextDoc} sortedTextDocs={sortedTabPosTextDocs()} />
             {renderEditor()}
         </div>
     );
