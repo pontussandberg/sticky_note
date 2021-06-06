@@ -34,8 +34,7 @@ const cssVars = {
         { varName: '--list-item-text-color', value: '#525461' },
         { varName: '--list-item-icons', value: '#8D8D8D' },
 
-        { varName: '--list-item-border-active', value: '1px solid var(--cta)' },
-        { varName: '--list-item-border', value: '1px solid #D5D5D5' },
+        { varName: '--list-item-border-active', value: '2px solid var(--cta)' },
     ],
     dark: [
         { varName: '--primary', value: '#15141B' },
@@ -59,7 +58,6 @@ const cssVars = {
         { varName: '--list-item-icons', value: '#f8f8f8' },
 
         { varName: '--list-item-border-active', value: 'none' },
-        { varName: '--list-item-border', value: 'none' },
     ]
 }
 
