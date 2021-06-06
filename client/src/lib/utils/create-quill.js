@@ -1,9 +1,9 @@
 import Quill from 'quill';
 
-const createQuill = stickie => new Quill('#' + stickie.quillID, {
+const createQuill = textDoc => new Quill('#' + textDoc.quillID, {
     modules: {
         syntax: true,
-        toolbar: '#' + stickie.toolbarID
+        toolbar: '#' + textDoc.toolbarID
     },
     theme: 'snow',
     placeholder: '',

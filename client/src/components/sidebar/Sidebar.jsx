@@ -1,6 +1,6 @@
 import React from 'react';
 import AddBtn from './AddBtn';
-import ListStickie from './ListStickie';
+import ListTextDoc from './ListTextDoc';
 import Spinner from '../Spinner';
 import Hamburger from '../Hamburger';
 import Header from '../Header';
@@ -14,8 +14,8 @@ This action can not be undone.
 
 
 const SideBar = ({
-    stickies,
-    displayStickie,
+    textDocs,
+    displayTextDoc,
     onRemove,
     onSidebarToggle,
     isSidebarOpen,
@@ -32,16 +32,16 @@ const SideBar = ({
 
 }) => {
     const handleListClick = (quillID) => {
-        displayStickie(quillID);
+        displayTextDoc(quillID);
 
         if (isMobile && isSidebarOpen) {
             onSidebarToggle();
         }
     }
 
-    const checkRemove = stickie => {
-        if (window.confirm(deleteMsg(stickie))) {
-            onRemove(stickie.quillID);
+    const checkRemove = textDoc => {
+        if (window.confirm(deleteMsg(textDoc))) {
+            onRemove(textDoc.quillID);
         }
     }
 
@@ -54,7 +54,7 @@ const SideBar = ({
     return (
         <>
             <div className={getSidebarClasses()}>
-            <Header
+                <Header
                 isLightMode={isLightMode}
                 authorized={authorized}
                 onLightModeToggle={onLightModeToggle}
@@ -64,25 +64,33 @@ const SideBar = ({
                 onLogout={onLogout}
                 onToggleLoginModal={onToggleLoginModal}
                 isSidebarOpen={isSidebarOpen}
-            />
-                <AddBtn onAdd={onAdd} isSidebarOpen={isSidebarOpen} isMobile={isMobile} />
-                <div className="sidebar__list-container">
-                    <ul>
-                        {isLoading
+                />
+
+                <div className="sidebar__container">
+                    <AddBtn
+                    onAdd={onAdd}
+                    isSidebarOpen={isSidebarOpen}
+                    isMobile={isMobile}
+                    />
+                    <div className="sidebar__list-container">
+                        <ul>
+                            {isLoading
                             ? <Spinner />
-                            : stickies.map(x => (
-                                <ListStickie
-                                    key={x.quillID}
-                                    stickie={x}
-                                    stickies={stickies}
-                                    isSidebarOpen={isSidebarOpen}
-                                    onMoveUp={onMoveUp}
-                                    checkRemove={checkRemove}
-                                    handleListClick={handleListClick}
+                            : textDocs.map(x => (
+                                <ListTextDoc
+                                key={x.quillID}
+                                textDoc={x}
+                                textDocs={textDocs}
+                                isSidebarOpen={isSidebarOpen}
+                                onMoveUp={onMoveUp}
+                                checkRemove={checkRemove}
+                                handleListClick={handleListClick}
                                 />
                             ))}
-                    </ul>
+                        </ul>
+                    </div>
                 </div>
+
                 <footer className="sidebar__footer">
                     <button className="sidebar__guide-btn" onClick={onAddGuide} > ? </button>
                 </footer>

@@ -1,29 +1,68 @@
 import React from 'react';
-import Stickie from './stickie/Stickie';
+import TextEditor from './editors/TextEditor';
+import BoardHeader from './BoardHeader';
 
-const Board = ({ stickies, isSidebarOpen, changeHeading, onStickiesUpdate, isMobile, isSaving }) => {
-    const renderStickie = () => {
-        const x = stickies.find(x => x.isDisplayed);
-        return x
-            ? (<Stickie
-                isSidebarOpen={isSidebarOpen}
-                key={x.quillID}
-                stickie={x}
-                changeHeading={changeHeading}
-                onStickiesUpdate={onStickiesUpdate}
-                isSaving={isSaving}
+
+
+const Board = ({ textDocs, isSidebarOpen, changeHeading,
+                onTextDocUpdate, isSaving, displayTextDoc,
+                closeTab, isMobile }) => {
+
+    const sortedTabPosTextDocs = () => {
+        const filtered = textDocs.filter(textDoc => typeof textDoc.tabPos === 'number' && textDoc.tabPos >= 0)
+
+        const compare = (a, b) => {
+            if (a.tabPos < b.tabPos) {
+                return -1;
+            }
+            if (a.tabPos > b.tabPos) {
+                return 1;
+            }
+            return 0;
+        }
+
+        if (filtered.length) {
+            return filtered.sort( compare )
+        }
+        return []
+    }
+
+    const renderEditor = () => {
+        const currDisplayedDoc = textDocs.find(x => x.isDisplayed)
+
+        if (currDisplayedDoc) {
+            return (
+            <TextEditor
+            isSidebarOpen={isSidebarOpen}
+            key={currDisplayedDoc.quillID}
+            textDoc={currDisplayedDoc}
+            changeHeading={changeHeading}
+            onTextDocUpdate={onTextDocUpdate}
+            isSaving={isSaving}
             />)
-            : null;
-    };
+        }
 
-    const getBoardClasses = () => isSidebarOpen && isMobile
-        ? 'board--hidden'
-        : 'board';
+        return null
+    }
+
+    const renderBoardHeader = () => {
+        if (isMobile) {
+            return null
+        }
+
+        return (
+            <BoardHeader
+            closeTab={closeTab}
+            displayTextDoc={displayTextDoc}
+            sortedTextDocs={sortedTabPosTextDocs()}
+            />
+        )
+    }
 
     return (
-        <div className={getBoardClasses()}>
-            {/* <div className="no-open"></div> */}
-            {renderStickie()}
+        <div className="board">
+            {renderBoardHeader()}
+            {renderEditor()}
         </div>
     );
 }
