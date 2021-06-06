@@ -14,28 +14,33 @@ const mobileSize = 1200;
 
 const cssVars = {
     light: [
-        { varName: '--primary', value: '#eee' },
+        { varName: '--primary', value: '#E2E4FF' },
         { varName: '--primary-indent', value: '#dddddd' },
-        { varName: '--tab-border', value: '#06c' },
-        { varName: '--blue', value: '#7191d1' },
-        { varName: '--select', value: '#253ea1' },
+        { varName: '--tab-border', value: '#BFBFBF' },
+        { varName: '--blue', value: 'rgba(255, 255, 255, .95)' },
+        { varName: '--select', value: '#FFF' },
         { varName: '--editor-bg', value: '#FFF' },
-        { varName: '--editor-bg-darker', value: '#fafafa' },
+        { varName: '--editor-bg-darker', value: '#eee' },
         { varName: '--toolbar-bg', value: '#FFF' },
         { varName: '--editor-text', value: '#111' },
         { varName: '--text', value: '#111' },
         { varName: '--editor-icon', value: '#111' },
-        { varName: '--cta', value: '#06c' },
+        { varName: '--cta', value: '#007aff' },
         { varName: '--code-block', value: '#292C3E' },
         { varName: '--logout-btn-color', value: '#dd2b3d' },
         { varName: '--border', value: '#ccc' },
         { varName: '--text-secondary', value: '#474747' },
         { varName: '--editor-code-block', value: '#41434d' },
+        { varName: '--list-item-text-color', value: '#525461' },
+        { varName: '--list-item-icons', value: '#8D8D8D' },
+
+        { varName: '--list-item-border-active', value: '1px solid var(--cta)' },
+        { varName: '--list-item-border', value: '1px solid #D5D5D5' },
     ],
     dark: [
         { varName: '--primary', value: '#15141B' },
         { varName: '--primary-indent', value: '#41434d' },
-        { varName: '--tab-border', value: '#55658f' },
+        { varName: '--tab-border', value: '#515358' },
         { varName: '--blue', value: '#34353d' },
         { varName: '--select', value: '#464953' },
         { varName: '--editor-bg', value: '#3D3F44' },
@@ -50,6 +55,11 @@ const cssVars = {
         { varName: '--border', value: '#27252e' },
         { varName: '--text-secondary', value: '#a5a5a5' },
         { varName: '--editor-code-block', value: '#212227' },
+        { varName: '--list-item-text-color', value: '#FFF' },
+        { varName: '--list-item-icons', value: '#f8f8f8' },
+
+        { varName: '--list-item-border-active', value: 'none' },
+        { varName: '--list-item-border', value: 'none' },
     ]
 }
 
@@ -241,7 +251,7 @@ const App = () => {
     };
 
     const removeAllTabs = (list) => {
-        return list.map( x => {
+        return list.map(x => {
             const tabPos = x.isDisplayed ? 0 : -1
             return {
                 ...x,
@@ -261,8 +271,8 @@ const App = () => {
 
             } else if (x.quillID !== quillID && !targetHasTabPos) {
                 const tabPos = x.tabPos === -1
-                    ? ( -1 )
-                    : ( x.tabPos + 1 )
+                    ? (-1)
+                    : (x.tabPos + 1)
 
                 x.tabPos = tabPos
             }
@@ -401,7 +411,7 @@ const App = () => {
                 authorized={authorized}
                 onLightModeToggle={handleLightModeToggle}
                 onToggleLoginModal={handleToggleLoginModal}
-                />
+            />
             <Board
                 isMobile={isMobile}
                 closeTab={handleCloseTab}

@@ -11,14 +11,17 @@
     align-items: center;
     border-radius: 20px;
     margin-bottom: 7px;
-    transition: box-shadow .2s ease, height .2s ease;
+    transition: height .2s ease;
+    border: 1px solid transparent;
 }
 
 .list-text-doc:hover {
     background: var(--select);
+    border: var(--list-item-border-active);
 }
 
 .list-text-doc--selected {
+    border: var(--list-item-border-active);
     background: var(--select) !important;
 }
 
@@ -32,7 +35,7 @@
     display: flex;
     -webkit-box-pack: start;
     justify-content: flex-start;
-    color: #fff;
+    color: var(--list-item-text-color);
     text-decoration: none;
     background: none;
     border: none;
@@ -60,6 +63,10 @@
     justify-content: center;
 }
 
+.list-text-doc__bullet circle {
+    fill: var(--list-item-icons);
+}
+
 .list-text-doc__arrow {
     background: none;
     margin-left: 7px;
@@ -69,7 +76,7 @@
     height: 20px;
     width: 20px;
     background: none;
-    fill: #fff;
+    fill: var(--list-item-icons);
 }
 
 .list-text-doc__arrow svg:hover {
@@ -84,8 +91,8 @@
     margin-left:7px;
 }
 .list-text-doc__del svg line {
-    stroke: #fff;
-    fill: #fff;
+    stroke: var(--list-item-icons);
+    fill: var(--list-item-icons);
     z-index: 1;
 }
 .list-text-doc__del:hover svg line {
