@@ -34,7 +34,6 @@ function BoardHeader({ sortedTextDocs, displayTextDoc, closeTab }) {
     }
 
     const renderTabs = () => {
-        //console.log(sortedTextDocs)
         return sortedTextDocs.map((textDoc, i) => {
             const isNextActive = sortedTextDocs[i + 1] && sortedTextDocs[i + 1].isDisplayed
             const isPrevActive = sortedTextDocs[i - 1] && sortedTextDocs[i - 1].isDisplayed

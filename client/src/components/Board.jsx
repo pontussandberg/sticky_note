@@ -22,9 +22,7 @@ const Board = ({ textDocs, isSidebarOpen, changeHeading,
         }
 
         if (filtered.length) {
-            const x = filtered.sort( compare )
-            console.log(x)
-            return x
+            return filtered.sort( compare )
         }
         return []
     }
