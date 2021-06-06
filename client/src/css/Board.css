@@ -7,26 +7,43 @@
 
 .board-header {
     height: 40px;
-    background: var(--editor-bg-darker);
+    background: linear-gradient(to bottom, var(--editor-bg-darker) 50%, var(--editor-bg));
     display: flex;
 }
 
 .board-header__tab {
+    padding: 0 40px;
     cursor: pointer;
     color: var(--text-secondary);
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
     flex-grow: 1;
     max-width: 300px;
     height: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
     background: var(--editor-bg-darker);
     position: relative;
 }
 .board-header__tab.active {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
     color: var(--text);
     background: var(--editor-bg);
+}
+.board-header__tab--next-active {
+    border-bottom-right-radius: 12px;
+}
+.board-header__tab--prev-active {
+    border-bottom-left-radius: 12px;
+}
+
+.board-header__tab-filler {
+    flex-grow: 1;
+    background: var(--editor-bg-darker)
+}
+
+.tab__title {
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
