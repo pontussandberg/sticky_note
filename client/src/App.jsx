@@ -401,8 +401,9 @@ const App = () => {
                 authorized={authorized}
                 onLightModeToggle={handleLightModeToggle}
                 onToggleLoginModal={handleToggleLoginModal}
-            />
+                />
             <Board
+                isMobile={isMobile}
                 closeTab={handleCloseTab}
                 displayTextDoc={handleDisplayTextDoc}
                 isSaving={isSaving}
