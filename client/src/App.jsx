@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Route, Switch } from 'react-router-dom';
 import shortid from 'shortid';
 import { guideStr } from './guide_string.json';
 import { getNotes, updateAllDB, authenticate } from './lib/db_connections';
@@ -15,11 +14,13 @@ const mobileSize = 1200;
 
 const cssVars = {
     light: [
-        { varName: '--primary', value: '#edf0f1' },
+        { varName: '--primary', value: '#eee' },
         { varName: '--primary-indent', value: '#dddddd' },
+        { varName: '--tab-border', value: '#06c' },
         { varName: '--blue', value: '#7191d1' },
         { varName: '--select', value: '#253ea1' },
         { varName: '--editor-bg', value: '#FFF' },
+        { varName: '--editor-bg-darker', value: '#fafafa' },
         { varName: '--toolbar-bg', value: '#FFF' },
         { varName: '--editor-text', value: '#111' },
         { varName: '--text', value: '#111' },
@@ -34,9 +35,11 @@ const cssVars = {
     dark: [
         { varName: '--primary', value: '#15141B' },
         { varName: '--primary-indent', value: '#41434d' },
+        { varName: '--tab-border', value: '#55658f' },
         { varName: '--blue', value: '#34353d' },
         { varName: '--select', value: '#464953' },
         { varName: '--editor-bg', value: '#3D3F44' },
+        { varName: '--editor-bg-darker', value: '#34363a' },
         { varName: '--toolbar-bg', value: '#3D3F44' },
         { varName: '--editor-text', value: '#FFF' },
         { varName: '--text', value: '#FFF' },
@@ -77,7 +80,8 @@ const initTextDoc = () => [{
     toolbarID: 't' + shortid.generate(),
     noteHeader: 'Empty Note',
     isDisplayed: true,
-    contentHTML: ''
+    contentHTML: '',
+    tabPos: -1,
 }];
 
 const getSavedTheme = () => {
@@ -126,6 +130,7 @@ const App = () => {
             getNotes()
                 .then(db => displayFirstTextDoc([...db, ...savedTextDocs]))
                 .then(filterDuplicates)
+                .then(removeAllTabs)
                 .then(merged => updateStateDB(merged))
                 .then(() => localStorage.clear())
                 .then(() => setIsLoading(false))
@@ -167,11 +172,12 @@ const App = () => {
             : colToList(savedTextDocs)
 
 
+
         authorized
             ? initTextDocsDB(savedTextDocsList)
             : savedTextDocsList === null
                 ? setTextDocs(initTextDoc())
-                : setTextDocs(savedTextDocsList)
+                : setTextDocs(removeAllTabs(savedTextDocsList))
     }, [authorized]);
 
     useEffect(() => {
@@ -181,7 +187,7 @@ const App = () => {
 
         window.addEventListener('resize', cb)
         return () => window.removeEventListener('resize', cb)
-    });
+    }, []);
 
 
     useEffect(() => {
@@ -234,16 +240,45 @@ const App = () => {
         }
     };
 
+    const removeAllTabs = (list) => {
+        return list.map( x => {
+            const tabPos = x.isDisplayed ? 0 : -1
+            return {
+                ...x,
+                tabPos
+            }
+        })
+    }
 
     const handleDisplayTextDoc = (quillID) => {
-        const list = [...textDocs].map(x => {
-            x.quillID === quillID
-                ? x.isDisplayed = true
-                : x.isDisplayed = false
+        const targetTextDoc = textDocs.find(textDoc => textDoc.quillID === quillID)
+        const targetHasTabPos = targetTextDoc.tabPos >= 0
+        const textDocsList = [...textDocs].map(x => {
+
+            // Tab Position
+            if (x.quillID === quillID && !targetHasTabPos) {
+                x.tabPos = 0
+
+            } else if (x.quillID !== quillID && !targetHasTabPos) {
+                const tabPos = x.tabPos === -1
+                    ? ( -1 )
+                    : ( x.tabPos + 1 )
+
+                x.tabPos = tabPos
+            }
+
+            // Displayed on board
+            if (x.quillID === quillID) {
+                x.isDisplayed = true
+            } else {
+                x.isDisplayed = false
+            }
+
             return x;
         });
-        // Would be unnecessary to update DB here.
-        setTextDocs(list);
+
+
+        setTextDocs(textDocsList)
     }
 
     const handleSidebarToggle = () => {
@@ -350,6 +385,7 @@ const App = () => {
                 onToggleLoginModal={handleToggleLoginModal}
             />
             <Board
+                displayTextDoc={handleDisplayTextDoc}
                 isSaving={isSaving}
                 isLoading={isLoading}
                 onTextDocUpdate={handleTextDocUpdate}

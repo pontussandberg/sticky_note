@@ -7,5 +7,26 @@
 
 .board-header {
     height: 40px;
-    background: #34363a;
+    background: var(--editor-bg-darker);
+    display: flex;
 }
+
+.board-header__tab {
+    cursor: pointer;
+    color: var(--text-secondary);
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    flex-grow: 1;
+    max-width: 300px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--editor-bg-darker);
+    position: relative;
+}
+.board-header__tab.active {
+    color: var(--text);
+    background: var(--editor-bg);
+}
+

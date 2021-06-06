@@ -23,12 +23,15 @@ const Header = ({ onSidebarToggle,
                 isMobile={isMobile}
                 />
 
-                <button className={isSidebarOpen ? 'toggle-button add32left' : 'hidden'} onClick={onLightModeToggle}>
+                <div
+                className={isSidebarOpen ? 'toggle-button add32left' : 'hidden'}
+                onClick={onLightModeToggle}
+                >
                     <DarkModeToggle
                     checked={!isLightMode}
                     size={isMobile ? 50 : 60}
                     />
-                </button>
+                </div>
             </div>
 
             <div className={isSidebarOpen ? 'header__login' : 'hidden'}>
