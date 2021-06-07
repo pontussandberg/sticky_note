@@ -28,13 +28,13 @@ const cssVars = {
         { varName: '--cta', value: '#007aff' },
         { varName: '--code-block', value: '#292C3E' },
         { varName: '--logout-btn-color', value: '#dd2b3d' },
-        { varName: '--border', value: '#ccc' },
+        { varName: '--border', value: '#ddd' },
         { varName: '--text-secondary', value: '#474747' },
         { varName: '--editor-code-block', value: '#41434d' },
         { varName: '--list-item-text-color', value: '#525461' },
         { varName: '--list-item-icons', value: '#8D8D8D' },
 
-        { varName: '--list-item-border', value: '1px solid var(--border)' },
+        { varName: '--list-item-border', value: '1px solid rgba(0, 0, 0, .35)' },
         { varName: '--list-item-border-active', value: '2px solid var(--cta)' },
         { varName: '--sidebar-border', value: '1px solid var(--border)' },
 
@@ -58,7 +58,7 @@ const cssVars = {
         { varName: '--text-secondary', value: '#a5a5a5' },
         { varName: '--editor-code-block', value: '#212227' },
         { varName: '--list-item-text-color', value: '#FFF' },
-        { varName: '--list-item-icons', value: '#f8f8f8' },
+        { varName: '--list-item-icons', value: '#929292' },
 
         { varName: '--list-item-border-active', value: 'none' },
         { varName: '--list-item-border', value: 'none' },
@@ -88,15 +88,6 @@ const filterDuplicates = (textDocs) => {
     })
 }
 
-const initTextDoc = () => [{
-    quillID: 'q' + shortid.generate(),
-    toolbarID: 't' + shortid.generate(),
-    noteHeader: 'Empty Note',
-    isDisplayed: true,
-    contentHTML: '',
-    tabPos: -1,
-}];
-
 const getSavedTheme = () => {
     const savedTheme = JSON.parse(localStorage.getItem('isLightMode'))
     return savedTheme !== null
@@ -119,6 +110,16 @@ const App = () => {
     // -->
 
 
+    const initTextDoc = () => [{
+        quillID: 'q' + shortid.generate(),
+        toolbarID: 't' + shortid.generate(),
+        noteHeader: 'Empty Note',
+        isDisplayed: true,
+        contentHTML: '',
+        tabPos: getNextTabPos(),
+    }];
+
+
     // If OS has dark mode and current stick_note mode is light,
     // setting sticky_note mode to dark and setting this state to Local Storage.
     useEffect(() => {
@@ -126,6 +127,7 @@ const App = () => {
             handleLightModeToggle()
         }
     }, [])
+
 
     useEffect(() => {
         const colors = isLightMode
@@ -135,6 +137,7 @@ const App = () => {
         colors.forEach(x => setCssVar(x.varName, x.value))
     }, [isLightMode])
 
+
     const initTextDocsDB = savedTextDocs => {
         setIsLoading(true);
 
@@ -143,7 +146,7 @@ const App = () => {
             getNotes()
                 .then(db => displayFirstTextDoc([...db, ...savedTextDocs]))
                 .then(filterDuplicates)
-                .then(removeAllTabs)
+                .then(tabOnlyDisplayedTextDoc)
                 .then(merged => updateStateDB(merged))
                 .then(() => localStorage.clear())
                 .then(() => setIsLoading(false))
@@ -159,6 +162,7 @@ const App = () => {
         }
     }
 
+
     // ### EFFECTS ###
     useEffect(() => {
         authenticate()
@@ -170,6 +174,7 @@ const App = () => {
                 }
             });
     }, []);
+
 
     // Initializing state with saved textDocs either in localstorage
     // or DB. If textDocs are saved in LS and the user is authorized,
@@ -190,39 +195,36 @@ const App = () => {
             ? initTextDocsDB(savedTextDocsList)
             : savedTextDocsList === null
                 ? setTextDocs(initTextDoc())
-                : setTextDocs(removeAllTabs(savedTextDocsList))
+                : setTextDocs(tabOnlyDisplayedTextDoc(savedTextDocsList))
     }, [authorized]);
+
 
     useEffect(() => {
         const cb = () => window.innerWidth < mobileSize
             ? setIsMobile(true)
             : setIsMobile(false);
 
+        cb()
+
         window.addEventListener('resize', cb)
         return () => window.removeEventListener('resize', cb)
     }, []);
 
-
-    useEffect(() => {
-        window.innerWidth < mobileSize
-            ? setIsMobile(true)
-            : setIsMobile(false);
-    }, [])
 
     // ### HANDLERS ###
 
     // Updating state when en editor updates, has to stop typing for
     // 3 secs before the request is made.
     const handleTextDocUpdate = (quillID, contentHTML, noteHeader) => {
-        clearTimeout(hotSaveTimeout);
+        clearTimeout(hotSaveTimeout)
         const result = textDocs.map(x => {
             if (x.quillID === quillID) {
-                x.contentHTML = contentHTML;
-                x.noteHeader = noteHeader;
+                x.contentHTML = contentHTML
+                x.noteHeader = noteHeader
             }
-            return x;
+            return x
         });
-        setTextDocs(result);
+        setTextDocs(result)
 
 
         if (authorized) {
@@ -235,7 +237,7 @@ const App = () => {
                     })
             }, 1500)
         } else {
-            updateLocalStorage(result);
+            updateLocalStorage(result)
         }
     };
 
@@ -253,7 +255,7 @@ const App = () => {
         }
     };
 
-    const removeAllTabs = (list) => {
+    const tabOnlyDisplayedTextDoc = (list) => {
         return list.map(x => {
             const tabPos = x.isDisplayed ? 0 : -1
             return {
@@ -263,33 +265,45 @@ const App = () => {
         })
     }
 
+    const getFirstTabPos = (docs) => {
+        let currFirstTabPos = -1
+        docs.forEach(doc => {
+            if (currFirstTabPos === -1 || (doc.tabPos !== -1 && doc.tabPos < currFirstTabPos)) {
+                currFirstTabPos = doc.tabPos
+            }
+        })
+
+        return currFirstTabPos
+    }
+
+    const getNextTabPos = () => {
+        let currLastTabPos = -1
+        textDocs.forEach(doc => {
+            if (doc.tabPos > currLastTabPos) {
+                currLastTabPos = doc.tabPos
+            }
+        })
+
+        return currLastTabPos + 1
+    }
+
     const handleDisplayTextDoc = (quillID) => {
-        const targetTextDoc = textDocs.find(textDoc => textDoc.quillID === quillID)
-        const targetHasTabPos = targetTextDoc.tabPos >= 0
-        const textDocsList = [...textDocs].map(x => {
+        const textDocsList = [...textDocs].map(doc => {
 
             // Tab Position
-            if (x.quillID === quillID && !targetHasTabPos) {
-                x.tabPos = 0
-
-            } else if (x.quillID !== quillID && !targetHasTabPos) {
-                const tabPos = x.tabPos === -1
-                    ? (-1)
-                    : (x.tabPos + 1)
-
-                x.tabPos = tabPos
+            if (doc.quillID === quillID && doc.tabPos === -1) {
+                doc.tabPos = getNextTabPos()
             }
 
             // Displayed on board
-            if (x.quillID === quillID) {
-                x.isDisplayed = true
+            if (doc.quillID === quillID) {
+                doc.isDisplayed = true
             } else {
-                x.isDisplayed = false
+                doc.isDisplayed = false
             }
 
-            return x;
+            return doc;
         });
-
 
         setTextDocs(textDocsList)
     }
@@ -304,9 +318,10 @@ const App = () => {
             toolbarID: 't' + shortid.generate(),
             noteHeader: 'Empty Note',
             isDisplayed: true,
-            contentHTML: ''
+            contentHTML: '',
+            tabPos: getNextTabPos(),
         }
-        const textDocsCopy = [...textDocs];
+        const textDocsCopy = [...textDocs]
         textDocsCopy.forEach(textDoc => textDoc.isDisplayed = false);
 
         textDocsCopy.unshift(textDoc);
@@ -333,8 +348,10 @@ const App = () => {
             toolbarID: 't' + shortid.generate(),
             contentHTML: guideStr,
             noteHeader: 'Guide',
-            isDisplayed: true
+            isDisplayed: true,
+            tabPos: getNextTabPos(),
         }
+
         const textDocsCopy = [...textDocs];
         textDocsCopy.forEach(textDoc => textDoc.isDisplayed = false);
 
@@ -391,6 +408,14 @@ const App = () => {
                 isDisplayed
             }
         })
+
+        // If current displayed doc was closed, displaying doc with lowest $tabPos
+        const firstTabPos = getFirstTabPos(result)
+        const isTargetDisplayed = textDocs.some(doc => doc.quillID === quillID && doc.isDisplayed)
+
+        if (isTargetDisplayed && firstTabPos !== -1) {
+            result.find(doc => doc.tabPos === firstTabPos).isDisplayed = true
+        }
 
         setTextDocs(result)
     }
