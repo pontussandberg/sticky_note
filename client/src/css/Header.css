@@ -1,6 +1,6 @@
 .header{
     height: 60px;
-    background: var(--primary);
+    background: var(--bg);
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr;

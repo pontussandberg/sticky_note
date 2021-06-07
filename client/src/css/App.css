@@ -10,11 +10,8 @@
 
 body{
     font-family: 'Poppins', sans-serif;
-    background-color: var(--primary);
-}
-
-.ql-editor > pre.ql-syntax {
-    background: var(--editor-code-block) !important;
+    background-color: var(--bg);
+    color: var(--text);
 }
 
 button {
@@ -60,7 +57,7 @@ button:focus {
 .app{
     height: 100vh;
     display: flex;
-    background: var(--primary);
+    background: var(--bg);
     overflow: hidden;
 }
 

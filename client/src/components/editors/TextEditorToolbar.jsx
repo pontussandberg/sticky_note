@@ -17,9 +17,6 @@ const TextEditor = ({ id, isSaving }) => (
                     <button className="ql-italic"></button>
                     <button className="ql-underline"></button>
                     <button className="ql-strike"></button>
-                </span>
-                <span className="ql-formats">
-                    <select className="ql-color"></select>
                     <select className="ql-background"></select>
                 </span>
             </span>

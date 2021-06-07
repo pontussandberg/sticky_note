@@ -8,14 +8,12 @@
     border-radius: 7px;
     text-decoration: none;
     color: var(--logout-btn-color);
-    background-color: var(--primary-indent);
+    background-color: var(--secondary);
+    border: var(--secondary-border);
 }
 
 .logout-btn:hover {
-    background: #dd3444;
-    color: #fff;
-}
-.logout-btn:focus {
+    border: none;
     background: #dd3444;
     color: #fff;
 }

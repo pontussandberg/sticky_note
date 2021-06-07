@@ -1,4 +1,4 @@
-.board{
+.board {
     background: var(--editor-bg);
     flex-grow: 1;
     display: flex;
@@ -60,6 +60,10 @@
     right: 20px;
     top: 50%;
     transform: translateY(-50%);
+}
+
+.tab__close rect {
+    fill: var(--icon)
 }
 
 .tab__title {

@@ -1,7 +1,7 @@
 .sidebar {
     width: 370px;
     flex-shrink: 0;
-    background: var(--primary);
+    background: var(--bg);
     display: flex;
     flex-direction: column;
     overflow: hidden;
@@ -25,7 +25,7 @@
     color: rgb(75, 75, 75);
 }
 
-.sidebar__footer{
+.sidebar__footer {
     min-height: 60px;
     max-height: 60px;
     display: -webkit-box;
@@ -36,10 +36,11 @@
             align-items: center;
 }
 
-.sidebar__guide-btn{
+.sidebar__guide-btn {
     border-radius: 50%;
     outline: none;
-    background-color: var(--primary-indent);
+    background-color: var(--secondary);
+    border: var(--secondary-border);
     display: -webkit-box;
     display: flex;
     -webkit-box-pack: center;
@@ -47,18 +48,12 @@
     align-content: center;
     -webkit-box-align: center;
     align-items: center;
-    border: none;
     z-index: 10000000000;
     width: 40px;
     height: 40px;
     font-size: 20px;
     color: var(--text);
     cursor: pointer;
-}
-
-.sidebar__guide-btn:active{
-    border:none;
-    box-shadow: 0px 0px 2px 0px var(--shadow);
 }
 
 .sidebar__container {

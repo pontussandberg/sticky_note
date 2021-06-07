@@ -15,7 +15,7 @@
     position: relative;
     width: 500px;
     margin-bottom: 200px;
-    background-color: var(--primary);
+    background-color: var(--bg);
     border-radius: 7px;
     padding: 50px 80px 80px 80px;
     -webkit-box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);

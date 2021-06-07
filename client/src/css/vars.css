@@ -1,59 +1,23 @@
 
 
 :root {
-    --primary: #f9f9f9;
-    --primary: #27252e;
+  --bg: #15141B;
+  --tab-border: #515358;
+  --secondary: #34353d;
+  --primary: #464953;
+  --editor-bg: #3D3F44;
+  --editor-bg-darker: #34363a;
+  --text: #FFF;
+  --cta: #3e445f;
+  --logout-btn-color: #FFF;
+  --text-secondary: #a5a5a5;
+  --editor-code-block: #212227;
 
-    --primary-indent: #dddddd;
-    --primary-indent: #41434d;
+  --icon: #bbb;
+  --active-toolbar-icon: #8196FF;
 
-    --blue-indent: rgb(93, 174, 255);
-
-    --blue: #395F9A;
-    --blue: #34353d;
-
-    --select: #6595dd;
-    --select: #464953;
-
-    --editor-bg: #FFF;
-    --editor-bg: #36393f;
-
-    --editor-code-block: #41434d;
-    --editor-code-block: #212227;
-
-    --toolbar-bg: #FFF;
-    --toolbar-bg: #2C2E34;
-
-    --shadow: rgba(37, 37, 37, 0.8);
-
-    --editor-text: #111;
-    --editor-text: #FFF;
-
-    --text: #111;
-    --text: #fff;
-
-    --text-darker: #ccc;
-
-    --editor-icon: #111;
-    --editor-icon: #FFF;
-
-    --cta: #06c;
-    --cta: #3e445f;
-
-    --code-block: #292C3E;
-    --code-block: #41434d;
-
-    --logout-btn-color: #dd2b3d;
-    --logout-btn-color: #fff;
-
-    --border: #ccc;
-    --border: #27252e;
-
-    --text-secondary: #a5a5a5;
-    --text-secondary: #474747;
-
-    --grey-indent: rgb(231, 231, 231);
-    --green: #00ba63;
-    --google: #4285F4;
-    --mobile-size: 1200px;
+  --border: 1px solid #27252e;
+  --primary-border: none;
+  --secondary-border: none;
+  --sidebar-border: none;
   }
