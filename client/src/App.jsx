@@ -14,7 +14,7 @@ const mobileSize = 1200;
 
 const cssVars = {
     light: [
-        { varName: '--primary', value: '#E2E4FF' },
+        { varName: '--primary', value: '#fff' },
         { varName: '--primary-indent', value: '#dddddd' },
         { varName: '--tab-border', value: '#BFBFBF' },
         { varName: '--blue', value: 'rgba(255, 255, 255, .95)' },
@@ -34,7 +34,10 @@ const cssVars = {
         { varName: '--list-item-text-color', value: '#525461' },
         { varName: '--list-item-icons', value: '#8D8D8D' },
 
+        { varName: '--list-item-border', value: '1px solid var(--border)' },
         { varName: '--list-item-border-active', value: '2px solid var(--cta)' },
+        { varName: '--sidebar-border', value: '1px solid var(--border)' },
+
     ],
     dark: [
         { varName: '--primary', value: '#15141B' },
@@ -58,6 +61,8 @@ const cssVars = {
         { varName: '--list-item-icons', value: '#f8f8f8' },
 
         { varName: '--list-item-border-active', value: 'none' },
+        { varName: '--list-item-border', value: 'none' },
+        { varName: '--sidebar-border', value: 'none' },
     ]
 }
 
