@@ -5,7 +5,6 @@
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    padding: 0 16px;
     transition: all ease-in-out .2s;
     border-right: var(--sidebar-border);
 }
@@ -59,13 +58,19 @@
 .sidebar__container {
     flex-grow: 1;
     overflow: auto;
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+    padding: 0 16px;
+    /* -ms-overflow-style: none;   */
+    /* scrollbar-width: none; */
 }
 .sidebar__container::-webkit-scrollbar {
-    display: none;
+    -webkit-appearance: none;
+    width: 7px;
 }
-
+.sidebar__container::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(0,0,0,.5);
+    -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+}
 
 
 .sidebar__list-container {

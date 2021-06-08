@@ -66,12 +66,12 @@ const SideBar = ({
                 isSidebarOpen={isSidebarOpen}
                 />
 
+                <AddBtn
+                onAdd={onAdd}
+                isSidebarOpen={isSidebarOpen}
+                isMobile={isMobile}
+                />
                 <div className="sidebar__container">
-                    <AddBtn
-                    onAdd={onAdd}
-                    isSidebarOpen={isSidebarOpen}
-                    isMobile={isMobile}
-                    />
                     <div className="sidebar__list-container">
                         <ul>
                             {isLoading
