@@ -327,10 +327,6 @@ const App = () => {
             filtered.push(...initTextDoc())
         }
 
-        const isOneDisplayed = filtered.some(x => x.isDisplayed);
-        if (!isOneDisplayed) {
-            filtered[0].isDisplayed = true;
-        }
         updateStateDB(filtered);
     }
 

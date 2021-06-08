@@ -59,10 +59,14 @@
 .sidebar__container {
     flex-grow: 1;
     overflow: auto;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
 }
-.sidebar__list-container::-webkit-scrollbar {
+.sidebar__container::-webkit-scrollbar {
     display: none;
 }
+
+
 
 .sidebar__list-container {
     -ms-overflow-style: none;  /* IE and Edge */
