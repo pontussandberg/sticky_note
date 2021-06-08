@@ -4,6 +4,7 @@
     color: var(--text);
     display: flex;
     flex-direction: column;
+    overflow: auto;
 }
 
 .textarea{

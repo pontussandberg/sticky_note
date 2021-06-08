@@ -7,10 +7,11 @@
 }
 
 .board-header {
-    overflow-x: scroll;
     height: 40px;
+    min-height: 40px;
     background: linear-gradient(to bottom, var(--editor-bg-darker) 50%, var(--editor-bg));
     display: flex;
+    overflow-x: hidden;
 }
 
 .board-header__tab {
