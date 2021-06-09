@@ -22,6 +22,8 @@ const cssVars = {
         { varName: '--text', value: '#363950' },
         { varName: '--text-secondary', value: '#474747' },
         { varName: '--cta', value: '#007aff' },
+        { varName: '--cta-active', value: '#007aff' },
+
         { varName: '--tab-border', value: '#BFBFBF' },
         { varName: '--logout-btn-color', value: '#dd2b3d' },
         { varName: '--editor-code-block', value: '#41434d' },
@@ -43,7 +45,8 @@ const cssVars = {
         { varName: '--secondary', value: '#34353d' },
         { varName: '--text', value: '#FFF' },
         { varName: '--text-secondary', value: '#a5a5a5' },
-        { varName: '--cta', value: '#3e445f' },
+        { varName: '--cta', value: '#5665b3' },
+        { varName: '--cta-active', value: '#6475cc' },
         { varName: '--tab-border', value: '#515358' },
         { varName: '--logout-btn-color', value: '#FFF' },
         { varName: '--editor-code-block', value: '#212227' },

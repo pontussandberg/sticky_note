@@ -1,6 +1,6 @@
 .list-text-doc {
     padding: 0 25px;
-    height: 50px;
+    height: 45px;
     white-space: nowrap;
     background: var(--secondary);
     display: -webkit-box;
@@ -9,10 +9,13 @@
     justify-content: space-between;
     -webkit-box-align: center;
     align-items: center;
-    border-radius: 20px;
-    margin-bottom: 7px;
+    border-radius: var(--border-radius);
+    margin-bottom: 10px;
     transition: height .2s ease;
     border: var(--secondary-border);
+}
+.list-text-doc--closed {
+    height: 30px;
 }
 
 .list-text-doc:hover {
@@ -100,11 +103,12 @@
     stroke: #dd3445;
 }
 
-@media only screen and (max-width: 1200px) {
+@media only screen and (min-width: 1200px) {
     .list-text-doc {
-        height: 45px;
+        height: 50px;
     }
+
     .list-text-doc--closed {
-        height: 25px !important;
+        height: 50px;
     }
 }

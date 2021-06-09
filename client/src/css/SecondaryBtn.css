@@ -5,9 +5,14 @@
     text-decoration: none;
     width: 100px;
     padding: 0px 2px 0px 0px;
-    border-radius: 7px;
+    border-radius: var(--border-radius);
     background-color: var(--cta);
+    transition: background .2s;
 }
+.secondary-btn:hover {
+    background: var(--cta-active);
+}
+
 .secondary-btn__text {
     white-space: nowrap;
     display: flex;

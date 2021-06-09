@@ -27,7 +27,16 @@
     align-items: center;
     background: var(--editor-bg-darker);
     position: relative;
+    transition: all .3s;
 }
+.board-header__tab:hover {
+    background: var(--editor-bg);
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    color: var(--text);
+    background: var(--editor-bg);
+}
+
 .board-header__tab.active {
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;

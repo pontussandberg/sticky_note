@@ -1,6 +1,8 @@
 
 
 :root {
+
+  /* Theme based vars */
   --bg: #15141B;
   --tab-border: #515358;
   --secondary: #34353d;
@@ -8,16 +10,18 @@
   --editor-bg: #3D3F44;
   --editor-bg-darker: #34363a;
   --text: #FFF;
-  --cta: #3e445f;
+  --cta: #5261ac;
+  --cta-active: #6475cc;
   --logout-btn-color: #FFF;
   --text-secondary: #a5a5a5;
   --editor-code-block: #212227;
-
   --icon: #bbb;
   --active-toolbar-icon: #8196FF;
-
   --border: 1px solid #27252e;
   --primary-border: none;
   --secondary-border: none;
   --sidebar-border: none;
+
+
+  --border-radius: 14px;
   }

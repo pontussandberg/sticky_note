@@ -1,11 +1,11 @@
 .logout-btn {
     display: flex;
     align-items: center;
-    width: 100px;
+    width: 70px;
     box-sizing: content-box;
     cursor: pointer;
     padding: 0px 2px 0px 0px;
-    border-radius: 7px;
+    border-radius: var(--border-radius);
     text-decoration: none;
     color: var(--logout-btn-color);
     background-color: var(--secondary);
@@ -26,16 +26,16 @@
     text-decoration: none;
     -webkit-box-flex: 1;
     flex-grow: 1;
-    font-size: 16px;
-    padding: 8px 0;
+    padding: 4px 0;
+    font-size: 14px;
 }
 
-@media only screen and (max-width: 1200px) {
+@media only screen and (min-width: 1200px) {
     .logout-btn__text {
-        padding: 4px 0;
-        font-size: 14px;
+        font-size: 16px;
+        padding: 8px 0;
     }
     .logout-btn {
-        width: 70px;
+        width: 100px;
     }
 }

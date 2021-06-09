@@ -3,14 +3,7 @@ import React from 'react';
 const Hamburger = ({ onClick, isMobile, isSidebarOpen, classes = '' }) => {
 
     const getHamburgerContainerClasses = () => {
-        let result = 'hamburger-container '
-        result += classes + ' '
-
-        if (isMobile && !isSidebarOpen) {
-            result += 'hamburger-container--mobile-closed '
-        }
-
-        return result
+        return `${classes} hamburger-container `
     }
 
     return (

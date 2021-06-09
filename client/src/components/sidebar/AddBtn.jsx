@@ -2,7 +2,7 @@ import React from 'react';
 import Plus from '../svg/Plus';
 
 const getContainerClasses = (isMobile, isSidebarOpen) => {
-    let classes = 'add-btn-container '
+    let classes = 'add-btn-container sidebar__wrapper '
     if (isMobile && isSidebarOpen) {
         classes +=  'add-btn-container--mobile-active '
     }

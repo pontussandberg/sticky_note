@@ -182,7 +182,7 @@ pre.ql-syntax{
     fill: var(--active-toolbar-icon);
 }
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 1200px) {
     .saved-indicator--green, .saved-indicator--red{
         margin: 0 10px;
     }

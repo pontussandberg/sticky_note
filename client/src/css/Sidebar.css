@@ -9,7 +9,7 @@
     border-right: var(--sidebar-border);
 }
 .sidebar--closed{
-    width: 80px;
+    width: 40px;
 }
 
 .sidebar--open-mobile {
@@ -58,7 +58,6 @@
 .sidebar__container {
     flex-grow: 1;
     overflow: auto;
-    padding: 0 16px;
     /* -ms-overflow-style: none;   */
     /* scrollbar-width: none; */
 }
@@ -78,13 +77,9 @@
 }
 
 
-@media only screen and (max-width: 1200px) {
+@media only screen and (min-width: 1200px) {
     .sidebar--closed{
-        width: 40px;
-        padding: 0 5px;
-    }
-    .sidebar > *{
-        padding-right: 0;
+        width: 80px;
     }
 }
 

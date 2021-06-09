@@ -15,7 +15,7 @@ const Header = ({ onSidebarToggle,
                   onToggleLoginModal, isSidebarOpen }) => {
 // -->
     return (
-        <header className={isSidebarOpen ? 'header' : 'header header--closed'}>
+        <header className={isSidebarOpen ? 'header sidebar__wrapper' : 'header sidebar__wrapper header--closed'}>
             <div className="flex flex--jc-center">
                 <Hamburger
                 onClick={onSidebarToggle}

@@ -71,7 +71,7 @@ const SideBar = ({
                 isSidebarOpen={isSidebarOpen}
                 isMobile={isMobile}
                 />
-                <div className="sidebar__container">
+                <div className="sidebar__container sidebar__wrapper">
                     <div className="sidebar__list-container">
                         <ul>
                             {isLoading
