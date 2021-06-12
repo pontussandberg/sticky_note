@@ -10,11 +10,17 @@ const getNotes = () => fetch('/api/notes')
     .then(displayFirstTextDoc)
     .catch(console.error);
 
-const updateAllDB = data => fetch('/api/notes', {
-    method: 'PUT',
-    body: JSON.stringify(data),
-    headers: { 'Content-Type': 'application/json' }
-});
+const updateAllDB = data => {
+    if (data.length > 0) {
+        fetch('/api/notes', {
+            method: 'PUT',
+            body: JSON.stringify(data),
+            headers: { 'Content-Type': 'application/json' }
+        });
+    } else {
+        return new Promise((res, rej) => res('Canceled save'))
+    }
+}
 
 const updateOneDB = textDoc => fetch(`/api/notes/${textDoc.quillID}`, {
     method: 'PUT',
